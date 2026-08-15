@@ -39,6 +39,51 @@
             --border-radius-sm: 8px;
         }
 
+        body.dark-theme {
+            --primary-pink: #442B36;
+            --dark-pink: #FF8DA1;
+            --pastel-pink: #2F1A24;
+            --accent-lavender: #3B314A;
+            --dark-lavender: #BCAED7;
+            --light-lavender: #261D2F;
+            --pastel-mint: #1B2E22;
+            --dark-mint: #A5D6A7;
+            --pastel-blue: #192C3A;
+            --dark-blue: #90CAF9;
+            --pastel-peach: #36291C;
+            --dark-peach: #FFCC80;
+            --text-color: #E0D0E0;
+            --dark-text: #FFFFFF;
+            --white: #201420;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --card-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #180C14 0%, #12091A 100%) !important;
+            color: #E0D0E0;
+        }
+        body.dark-theme .sidebar {
+            background: rgba(32, 20, 32, 0.85);
+            border-left-color: rgba(255, 255, 255, 0.05);
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-theme .search-box input {
+            background: rgba(40, 30, 45, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        body.dark-theme .chat-bubble.other {
+            background: #2D1E2F;
+            color: #fff;
+        }
+        body.dark-theme .chat-bubble.sarah {
+            background: #442B36;
+            color: #fff;
+        }
+        body.dark-theme .header-cover {
+            background: linear-gradient(135deg, #442B36, #261D2F);
+            border-bottom: 3px solid var(--dark-pink);
+            color: #fff;
+        }
+
         /* Basic Reset & Typography */
         * {
             box-sizing: border-box;
@@ -810,9 +855,10 @@
     <!-- Sidebar Navigation -->
     <aside class="sidebar">
         <div class="sidebar-brand">
-            <span style="font-size: 3rem;">🎀</span>
+            <span style="font-size: 3rem; cursor: pointer;" onclick="toggleTheme()" title="تغییر تم به حالت شب/روز">🎀</span>
             <h2>آلمانی برای بقا</h2>
             <p>Intensive Survival German for Girls 🌸</p>
+            <button onclick="toggleTheme()" class="btn-action" style="margin-top: 10px; font-size: 0.85rem; padding: 6px 12px; background: var(--light-lavender); border: 1px solid var(--accent-lavender); border-radius: 20px; color: var(--dark-text); cursor: pointer; width: 80%; margin-left: auto; margin-right: auto; display: block;">🌓 تم شب / روز</button>
         </div>
 
         <!-- Dynamic Vocabulary Search -->
@@ -936,7 +982,7 @@
                     <span style="font-size: 1.8rem;">🚺</span>
                     <h3 style="color: var(--dark-lavender); font-family: 'Vazirmatn', sans-serif;">راهنمای هویت و جنسیت در زبان آلمانی (برای خانم‌ها)</h3>
                 </div>
-                <div class="grammar-box" style="background: white; border-right: none; padding: 20px; border-radius: 12px; margin-bottom: 0;">
+                <div class="grammar-box" style="background: var(--white); border-right: none; padding: 20px; border-radius: 12px; margin-bottom: 0;">
                     <p>در زبان آلمانی، بر خلاف انگلیسی یا فارسی، مشاغل، نقش‌ها و هویت‌های اجتماعی به شدت <strong>دارای جنسیت (Gendern)</strong> هستند. از آنجایی که تو یک <strong>زن (Frau)</strong> هستی، در مکالمات خود حتماً باید از اشکال مؤنث کلمات استفاده کنی. این کار بسیار ساده است اما نشانه تسلط و احترام به هویت خودت در فرهنگ آلمانی است.</p>
                     
                     <h4 style="margin: 15px 0 10px 0; color: var(--dark-pink); font-size: 1.1rem;">💡 فرمول تبدیل هویت به مؤنث:</h4>
@@ -3322,6 +3368,12 @@
 
     // Initialize Vocab Data from DOM tables for instant search
     document.addEventListener("DOMContentLoaded", () => {
+        // Load Dark Theme if saved in LocalStorage
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
         // 1. Read row texts to load vocab search DB
         const rows = document.querySelectorAll(".vocab-table tbody tr");
         rows.forEach(row => {
@@ -3479,6 +3531,18 @@
         console.log('App was successfully installed!');
         installBtn.style.display = 'none';
     });
+
+    // Theme Toggle Functionality
+    function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle("dark-theme");
+        
+        if (body.classList.contains("dark-theme")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    }
 </script>
 
 </body>

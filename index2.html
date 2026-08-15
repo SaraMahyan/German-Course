@@ -39,6 +39,64 @@
             --border-radius-sm: 8px;
         }
 
+        body.dark-theme {
+            --primary-pink: #442B36;
+            --dark-pink: #FF8DA1;
+            --pastel-pink: #2F1A24;
+            --accent-lavender: #3B314A;
+            --dark-lavender: #BCAED7;
+            --light-lavender: #261D2F;
+            --pastel-mint: #1B2E22;
+            --dark-mint: #A5D6A7;
+            --pastel-blue: #192C3A;
+            --dark-blue: #90CAF9;
+            --pastel-peach: #36291C;
+            --dark-peach: #FFCC80;
+            --text-color: #E0D0E0;
+            --dark-text: #FFFFFF;
+            --white: #201420;
+            background: linear-gradient(135deg, #180C14 0%, #12091A 100%) !important;
+            color: #E0D0E0;
+        }
+        body.dark-theme .mobile-header {
+            background: rgba(32, 20, 32, 0.9);
+            border-bottom-color: var(--primary-pink);
+        }
+        body.dark-theme .search-box input {
+            background: rgba(40, 30, 45, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+        body.dark-theme .chat-bubble.other {
+            background: #2D1E2F;
+            color: #fff;
+        }
+        body.dark-theme .chat-bubble.sarah {
+            background: #442B36;
+            color: #fff;
+        }
+        body.dark-theme .whatsapp-chat {
+            background: #1C101C;
+        }
+        body.dark-theme .story-item {
+            background: #180C14;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        body.dark-theme .bottom-action-bar {
+            background: rgba(32, 20, 32, 0.95);
+            border-top-color: var(--primary-pink);
+        }
+        body.dark-theme .phrase-german .changeable {
+            color: #90CAF9;
+            background: #1E2D3A;
+        }
+        body.dark-theme .tab-btn {
+            color: #888;
+        }
+        body.dark-theme .tab-btn.active {
+            color: var(--dark-pink);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -404,15 +462,19 @@
             font-family: 'Nunito', sans-serif;
             font-weight: 700;
             color: var(--dark-pink);
-            font-size: 1rem;
+            font-size: 0.95rem;
             margin-bottom: 6px;
+            line-height: 1.4;
+            word-wrap: break-word;
         }
 
         .phrase-german .changeable {
             color: #3f51b5;
             background: #e8eaf6;
-            padding: 1px 6px;
+            padding: 2px 6px;
             border-radius: 4px;
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .phrase-pron-eng {
@@ -617,7 +679,10 @@
     <header class="mobile-header">
         <div class="header-title-row">
             <h1><span>🌸</span> آلمانی برای بقا (موبایل)</h1>
-            <span style="font-size: 0.8rem; background: var(--primary-pink); color: var(--dark-text); padding: 2px 8px; border-radius: 12px; font-weight: 700;">دخترانه و کاربردی</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <button onclick="toggleTheme()" style="background: transparent; border: none; font-size: 1.25rem; cursor: pointer; padding: 4px;">🌓</button>
+                <span style="font-size: 0.75rem; background: var(--primary-pink); color: var(--dark-text); padding: 2px 8px; border-radius: 12px; font-weight: 700;">دخترانه و کاربردی</span>
+            </div>
         </div>
         <!-- Live Vocab Search -->
         <div class="search-box">
@@ -1265,6 +1330,12 @@
             installBtn.style.display = 'none';
         });
 
+        // Load Theme on Startup
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark-theme");
+        }
+
         // Register Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -1272,6 +1343,17 @@
                     .then(reg => console.log('Service Worker registered successfully!', reg.scope))
                     .catch(err => console.error('Service Worker registration failed:', err));
             });
+        }
+
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle("dark-theme");
+            if (body.classList.contains("dark-theme")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
         }
     </script>
 </body>
