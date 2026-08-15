@@ -443,6 +443,20 @@
             color: var(--dark-pink);
         }
 
+        .dialogue-line {
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .dialogue-line:hover {
+            background-color: var(--pastel-pink) !important;
+        }
+
+        body.dark-theme .dialogue-line:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
         .col-pron-farsi::before {
             content: "🗣️ تلفظ فارسی: ";
             font-size: 0.75rem;
@@ -1167,6 +1181,7 @@
             `;
 
             document.getElementById("active-lesson-content").innerHTML = contentHTML;
+            setupGrammarHighlightLines();
             initAudioSupport();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1355,6 +1370,29 @@
                     btn.style.display = 'inline-block';
                     el.appendChild(btn);
                 }
+            });
+        }
+
+        // Wrap German grammar examples line-by-line so they can be played individually
+        function setupGrammarHighlightLines() {
+            document.querySelectorAll('.grammar-highlight').forEach(block => {
+                if (block.classList.contains('lines-parsed')) return;
+                block.classList.add('lines-parsed');
+                
+                const rawLines = block.innerHTML.split('<br>');
+                const parsedHTML = rawLines.map(line => {
+                    const trimmed = line.trim();
+                    if (!trimmed) return '';
+                    
+                    const hasPersian = /[\u0600-\u06FF]/.test(trimmed);
+                    if (!hasPersian) {
+                        return `<span class="dialogue-line has-audio-setup" style="display: block; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px;">${trimmed}</span>`;
+                    } else {
+                        return `<span style="display: block; padding: 4px 10px; opacity: 0.85; margin-bottom: 4px; font-size: 0.9rem;">${trimmed}</span>`;
+                    }
+                }).filter(Boolean).join('');
+                
+                block.innerHTML = parsedHTML;
             });
         }
 

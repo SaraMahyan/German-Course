@@ -4067,6 +4067,7 @@
 
         // 3. Setup German Text lines & Audio Support
         setupGermanTextLines();
+        setupGrammarHighlightLines();
         initAudioSupport();
     });
 
@@ -4294,6 +4295,29 @@
             block.innerHTML = parsedHTML;
             block.classList.remove('has-audio-setup'); // Remove from outer container
             block.style.cursor = 'default';
+        });
+    }
+
+    // Wrap German grammar examples line-by-line so they can be played individually
+    function setupGrammarHighlightLines() {
+        document.querySelectorAll('.grammar-highlight').forEach(block => {
+            if (block.classList.contains('lines-parsed')) return;
+            block.classList.add('lines-parsed');
+            
+            const rawLines = block.innerHTML.split('<br>');
+            const parsedHTML = rawLines.map(line => {
+                const trimmed = line.trim();
+                if (!trimmed) return '';
+                
+                const hasPersian = /[\u0600-\u06FF]/.test(trimmed);
+                if (!hasPersian) {
+                    return `<span class="dialogue-line has-audio-setup" style="display: block; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px;">${trimmed}</span>`;
+                } else {
+                    return `<span style="display: block; padding: 4px 10px; opacity: 0.85; margin-bottom: 4px; font-size: 0.9rem;">${trimmed}</span>`;
+                }
+            }).filter(Boolean).join('');
+            
+            block.innerHTML = parsedHTML;
         });
     }
 
