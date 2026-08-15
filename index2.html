@@ -863,7 +863,26 @@
         <h2 id="active-lesson-title" style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 20px;">عنوان درس</h2>
 
         <!-- Active Lesson Content Container -->
-             // Empty databases to be populated dynamically from index.html
+        <div id="active-lesson-content">
+            <!-- Dynamically Loaded from JS based on chosen lesson -->
+        </div>
+    </section>
+
+    <!-- Sticky Mobile Tab Navigation Bar -->
+    <nav class="bottom-action-bar">
+        <button class="tab-btn active" id="tab-home" onclick="backToHome()">
+            <span>🏠</span>
+            خانه
+        </button>
+        <button class="tab-btn" id="tab-print" onclick="window.location.href='index.html?mode=print'">
+            <span>📄</span>
+            نسخه پی‌دی‌اف/چاپ
+        </button>
+    </nav>
+
+    <!-- Content DB for JS Rendering -->
+    <script>
+        // Empty databases to be populated dynamically from index.html
         const lessonsData = {};
         const vocabData = [];
 
