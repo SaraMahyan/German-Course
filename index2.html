@@ -1278,13 +1278,29 @@
             }
         }
 
-        // Browser Text-to-Speech (TTS) Pronunciation Support
-        function speakGerman(text) {
+        // Browser Text-to-Speech (TTS) Pronunciation Support with Toggle Stop
+        function speakGerman(text, element) {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                    // If the same element was clicked, we just stop and return!
+                    if (element && element.classList.contains('speaking')) {
+                        element.classList.remove('speaking');
+                        const icon = element.querySelector('.audio-icon');
+                        if (icon) icon.innerText = ' 🔊';
+                        return;
+                    }
+                }
                 
-                // Remove 🔊 icon and speaker tags (e.g. "سارا: ")
-                let cleanText = text.replace(/🔊/g, '').trim();
+                // Remove speaking state from all other active elements
+                document.querySelectorAll('.speaking').forEach(el => {
+                    el.classList.remove('speaking');
+                    const icon = el.querySelector('.audio-icon');
+                    if (icon) icon.innerText = ' 🔊';
+                });
+                
+                // Remove 🔊/🛑 icon and speaker tags (e.g. "سارا: ")
+                let cleanText = text.replace(/🔊/g, '').replace(/🛑/g, '').trim();
                 const colonIdx = cleanText.indexOf(':');
                 if (colonIdx !== -1) {
                     cleanText = cleanText.substring(colonIdx + 1).trim();
@@ -1294,6 +1310,21 @@
                 utterance.lang = 'de-DE';
                 utterance.rate = 0.85; // Slow, easy-to-learn rate
                 
+                if (element) {
+                    element.classList.add('speaking');
+                    const icon = element.querySelector('.audio-icon');
+                    if (icon) icon.innerText = ' 🛑'; // Change icon to stop sign
+                    
+                    utterance.onend = () => {
+                        element.classList.remove('speaking');
+                        if (icon) icon.innerText = ' 🔊';
+                    };
+                    utterance.onerror = () => {
+                        element.classList.remove('speaking');
+                        if (icon) icon.innerText = ' 🔊';
+                    };
+                }
+
                 const voices = window.speechSynthesis.getVoices();
                 const deVoice = voices.find(v => v.lang.startsWith('de-DE') || v.lang === 'de_DE');
                 if (deVoice) {
@@ -1308,7 +1339,7 @@
 
         // Auto-generate speaker icons for German elements
         function initAudioSupport() {
-            document.querySelectorAll('.col-german, .phrase-german, .german-text, .bubble-german').forEach(el => {
+            document.querySelectorAll('.col-german, .phrase-german, .bubble-german, .dialogue-line').forEach(el => {
                 if (!el.querySelector('.audio-icon') && !el.classList.contains('has-audio-setup')) {
                     el.classList.add('has-audio-setup');
                     el.style.cursor = 'pointer';
@@ -1331,7 +1362,7 @@
         document.addEventListener('click', (e) => {
             const audioContainer = e.target.closest('.has-audio-setup');
             if (audioContainer) {
-                speakGerman(audioContainer.innerText);
+                speakGerman(audioContainer.innerText, audioContainer);
             }
         });
     </script>
