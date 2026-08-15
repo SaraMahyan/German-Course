@@ -1,4 +1,4 @@
-const CACHE_NAME = "german-survival-cache-v1";
+const CACHE_NAME = "german-survival-cache-v2";
 const ASSETS = [
   "./",
   "./index.html",

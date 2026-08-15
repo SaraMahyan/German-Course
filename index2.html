@@ -777,79 +777,7 @@
         </div>
 
         <div class="lessons-grid">
-            
-            <!-- L1 -->
-            <div class="lesson-btn-card" onclick="openLesson(1)">
-                <div class="lesson-btn-emoji">✈️</div>
-                <div class="lesson-btn-info">
-                    <span>درس اول</span>
-                    <h3>رسیدن به فرودگاه فرانکفورت (Ankunft)</h3>
-                </div>
-            </div>
-
-            <!-- L2 -->
-            <div class="lesson-btn-card" onclick="openLesson(2)">
-                <div class="lesson-btn-emoji">🚄</div>
-                <div class="lesson-btn-info">
-                    <span>درس دوم</span>
-                    <h3>سفر با قطار و راه‌آهن (Unterwegs)</h3>
-                </div>
-            </div>
-
-            <!-- L3 -->
-            <div class="lesson-btn-card" onclick="openLesson(3)">
-                <div class="lesson-btn-emoji">🗺️</div>
-                <div class="lesson-btn-info">
-                    <span>درس سوم</span>
-                    <h3>مسیریابی شهری در کارلسروهه (Orientierung)</h3>
-                </div>
-            </div>
-
-            <!-- L4 -->
-            <div class="lesson-btn-card" onclick="openLesson(4)">
-                <div class="lesson-btn-emoji">🏢</div>
-                <div class="lesson-btn-info">
-                    <span>درس چهارم</span>
-                    <h3>سروکله زدن با ادارات آلمان (Behörden)</h3>
-                </div>
-            </div>
-
-            <!-- L5 -->
-            <div class="lesson-btn-card" onclick="openLesson(5)">
-                <div class="lesson-btn-emoji">🎓</div>
-                <div class="lesson-btn-info">
-                    <span>درس پنجم</span>
-                    <h3>زندگی دانشجویی در دانشگاه KIT (Uni)</h3>
-                </div>
-            </div>
-
-            <!-- L6 -->
-            <div class="lesson-btn-card" onclick="openLesson(6)">
-                <div class="lesson-btn-emoji">🛒</div>
-                <div class="lesson-btn-info">
-                    <span>درس ششم</span>
-                    <h3>خرید سوپرمارکت و سیم‌کارت (Einkaufen)</h3>
-                </div>
-            </div>
-
-            <!-- L7 -->
-            <div class="lesson-btn-card" onclick="openLesson(7)">
-                <div class="lesson-btn-emoji">💬</div>
-                <div class="lesson-btn-info">
-                    <span>درس هفتم</span>
-                    <h3>مکالمات دوستانه و برنامه‌نویسی (Smalltalk)</h3>
-                </div>
-            </div>
-
-            <!-- L8 -->
-            <div class="lesson-btn-card" onclick="openLesson(8)">
-                <div class="lesson-btn-emoji">🚨</div>
-                <div class="lesson-btn-info">
-                    <span>درس هشتم</span>
-                    <h3>پزشک، داروخانه و موارد اضطراری (Notfälle)</h3>
-                </div>
-            </div>
-
+            <!-- Rendered dynamically -->
         </div>
     </section>
 
@@ -894,9 +822,10 @@
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlText, 'text/html');
 
-                for (let lNum = 1; lNum <= 8; lNum++) {
+                let lNum = 1;
+                while (true) {
                     const lessonArticle = doc.getElementById(`lesson-${lNum}`);
-                    if (!lessonArticle) continue;
+                    if (!lessonArticle) break;
 
                     const titleEl = lessonArticle.querySelector('.lesson-title-text h2');
                     const subtitleEl = lessonArticle.querySelector('.lesson-title-text p');
@@ -996,7 +925,12 @@
                             lesson: lNum
                         });
                     });
+
+                    lNum++;
                 }
+
+                // Render dynamic grid
+                renderLessonsGrid();
 
                 // Hide loading indicator
                 const loadingEl = document.getElementById("loading-indicator");
@@ -1010,6 +944,39 @@
                     loadingEl.style.color = "#D32F2F";
                 }
             }
+        }
+
+        function renderLessonsGrid() {
+            const gridEl = document.querySelector('.lessons-grid');
+            if (!gridEl) return;
+            gridEl.innerHTML = Object.keys(lessonsData).map(lNum => {
+                const data = lessonsData[lNum];
+                const emoji = getLessonEmoji(lNum);
+                return `
+                    <div class="lesson-btn-card" onclick="openLesson(${lNum})">
+                        <div class="lesson-btn-emoji">${emoji}</div>
+                        <div class="lesson-btn-info">
+                            <span>درس ${lNum}</span>
+                            <h3>${data.title.replace(/Lektion \d+:\s*/, '')}</h3>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function getLessonEmoji(lNum) {
+            const emojis = {
+                1: "✈️",
+                2: "🚄",
+                3: "🗺️",
+                4: "🏢",
+                5: "🎓",
+                6: "🛒",
+                7: "💬",
+                8: "🚨",
+                9: "🗣️"
+            };
+            return emojis[lNum] || "📚";
         }
 
         function splitLine(line) {

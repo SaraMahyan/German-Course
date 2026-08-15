@@ -926,6 +926,12 @@
                     <span>🚨 شرایط اضطراری (Notfälle)</span>
                 </button>
             </li>
+            <li class="nav-item" id="nav-l9">
+                <button onclick="switchLesson(9)">
+                    <span class="lesson-num">درس ۹</span>
+                    <span>🗣️ روزمرگی‌ها و مکالمات (Alltag)</span>
+                </button>
+            </li>
         </ul>
 
         <div class="sidebar-footer">
@@ -3360,6 +3366,618 @@
                             <div class="story-meta-box grammar">
                                 <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
                                 <p>زمان گذشته مجهول (Passiv Präteritum) با استفاده از فعل <strong>werden</strong> در گذشته (wurde): <em>Wurde er abgegeben?</em> (آیا او تحویل داده شد؟). ساختار مجهول گذشته بسیار در اخبار و گزارش‌های اداری و گم‌شده‌ها رایج است.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </article>
+
+        <!-- ==================== LESSON 9 ==================== -->
+        <article class="lesson-card" id="lesson-9">
+            
+            <!-- A. Title & Objectives -->
+            <div class="lesson-title-card">
+                <div class="lesson-title-text">
+                    <h2>Lektion 9: Alltag & Familiengespräche 🗣️</h2>
+                    <p>درس نهم: روزمرگی‌ها و مکالمات خانوادگی (مکالمات با دوستان، پدر و مادر، و افراد غریبه به همراه داستان‌های سطح A1/A2)</p>
+                </div>
+                <div class="lesson-objectives">
+                    <strong>🎯 اهداف این درس:</strong>
+                    <ul>
+                        <li>مکالمات روزمره و صمیمانه با دوستان صمیمی و صمیمیت در کلام (Duzen)</li>
+                        <li>مکالمات تلفنی با پدر و مادر (دلتنگی، مسائل مالی و درسی)</li>
+                        <li>مکالمه بین اعضای خانواده و گفتگو با افراد غریبه و همسایه‌ها</li>
+                        <li>۱۰ داستان کوتاه و کاربردی سطح‌بندی شده برای تقویت مهارت شنیداری و درک مطلب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- B. Vocabulary List (28 Words) -->
+            <div class="section-box">
+                <div class="section-header">
+                    <h3>📚 واژگان کلیدی روزمره و خانوادگی</h3>
+                </div>
+                <div class="vocab-table-wrapper">
+                    <table class="vocab-table">
+                        <thead>
+                            <tr>
+                                <th>Deutsch</th>
+                                <th>تلفظ فارسی</th>
+                                <th>Phonetic (ENG)</th>
+                                <th>معنی فارسی</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="col-german">sich unterhalten</td><td class="col-pron-farsi">زیش اونترهالتن</td><td class="col-pron-eng">zikh un-ter-hal-ten</td><td class="col-meaning">گفتگو کردن، گپ زدن</td></tr>
+                            <tr><td class="col-german">duzen</td><td class="col-pron-farsi">دوتسن</td><td class="col-pron-eng">dut-sen</td><td class="col-meaning">تو خطاب کردن (صمیمیت)</td></tr>
+                            <tr><td class="col-german">siezen</td><td class="col-pron-farsi">زیتسن</td><td class="col-pron-eng">zeet-sen</td><td class="col-meaning">شما خطاب کردن (رسمی)</td></tr>
+                            <tr><td class="col-german">das Heimweh</td><td class="col-pron-farsi">داس هایم‌وی</td><td class="col-pron-eng">das haim-veh</td><td class="col-meaning">غم دلتنگی برای وطن/خانه</td></tr>
+                            <tr><td class="col-german">das WG-Zimmer</td><td class="col-pron-farsi">داس وِگِ‌زیمر</td><td class="col-pron-eng">das veh-gey-tsim-er</td><td class="col-meaning">اتاق در خانه مشترک دانشجویی</td></tr>
+                            <tr><td class="col-german">der Geldtransfer</td><td class="col-pron-farsi">دِر گِلدترنسفر</td><td class="col-pron-eng">der geld-trans-fer</td><td class="col-meaning">انتقال پول</td></tr>
+                            <tr><td class="col-german">die Sparkasse</td><td class="col-pron-farsi">دی اشپارکاسه</td><td class="col-pron-eng">dee shpar-kas-e</td><td class="col-meaning">بانک محلی/دولتی آلمان</td></tr>
+                            <tr><td class="col-german">stolz sein</td><td class="col-pron-farsi">اشtولتس زاین</td><td class="col-pron-eng">shtolts zain</td><td class="col-meaning">مفتخر بودن، افتخار کردن</td></tr>
+                            <tr><td class="col-german">die Wohngemeinschaft (WG)</td><td class="col-pron-farsi">دی وون‌گماین‌شافت</td><td class="col-pron-eng">dee vohn-ge-main-shaft</td><td class="col-meaning">خانه مشترک دانشجویی</td></tr>
+                            <tr><td class="col-german">die Tram / Straßenbahn</td><td class="col-pron-farsi">دی ترام / اشتراسن‌بان</td><td class="col-pron-eng">dee tram / shtrah-sen-bahn</td><td class="col-meaning">تراموا، قطار شهری</td></tr>
+                            <tr><td class="col-german">der Kommilitone</td><td class="col-pron-farsi">دِر کومیلیتونه</td><td class="col-pron-eng">der ko-mi-lee-toh-ne</td><td class="col-meaning">هم‌دانشگاهی، هم‌کلاسی دانشگاه</td></tr>
+                            <tr><td class="col-german">die Schwarzwälder Kirschtorte</td><td class="col-pron-farsi">دی شوارتس‌ولدر کیرش‌تورته</td><td class="col-pron-eng">dee shvarts-vel-der keer-shtor-te</td><td class="col-meaning">کیک آلبالوی جنگل سیاه</td></tr>
+                            <tr><td class="col-german">der Ton</td><td class="col-pron-farsi">دِر تون</td><td class="col-pron-eng">der tohn</td><td class="col-meaning">گل رس (برای سفالگری)</td></tr>
+                            <tr><td class="col-german">die Mülltrennung</td><td class="col-pron-farsi">دی مول‌ترنونگ</td><td class="col-pron-eng">dee muel-tren-ung</td><td class="col-meaning">تفکیک زباله</td></tr>
+                            <tr><td class="col-german">kochen</td><td class="col-pron-farsi">کوخن</td><td class="col-pron-eng">kokh-en</td><td class="col-meaning">آشپزی کردن</td></tr>
+                            <tr><td class="col-german">der Mitbewohner</td><td class="col-pron-farsi">دِر میت‌بوونر</td><td class="col-pron-eng">der mit-be-voh-ner</td><td class="col-meaning">هم‌خانه‌ای</td></tr>
+                            <tr><td class="col-german">die Vorlesung</td><td class="col-pron-farsi">دی فورلیزونگ</td><td class="col-pron-eng">dee for-lay-zung</td><td class="col-meaning">کلاس درس دانشگاه (سخنرانی استاد)</td></tr>
+                            <tr><td class="col-german">das Schloss</td><td class="col-pron-farsi">داس شلوس</td><td class="col-pron-eng">das shlos</td><td class="col-meaning">قصر، کاخ</td></tr>
+                            <tr><td class="col-german">der Ausweis</td><td class="col-pron-farsi">دِر آوس‌وایس</td><td class="col-pron-eng">der aus-vais</td><td class="col-meaning">کارت شناسایی</td></tr>
+                            <tr><td class="col-german">die Heimat</td><td class="col-pron-farsi">دی هایمات</td><td class="col-pron-eng">dee hai-maht</td><td class="col-meaning">وطن، میهن</td></tr>
+                            <tr><td class="col-german">die Sparkassen-Card</td><td class="col-pron-farsi">دی اشپارکاسن‌کارت</td><td class="col-pron-eng">dee shpar-kas-en-kart</td><td class="col-meaning">کارت بانکی اسپارکاسه</td></tr>
+                            <tr><td class="col-german">die Gebühr</td><td class="col-pron-farsi">دی گبوهر</td><td class="col-pron-eng">dee ge-buehr</td><td class="col-meaning">کارمزد، هزینه</td></tr>
+                            <tr><td class="col-german">die Haltestelle</td><td class="col-pron-farsi">دی هالتِ‌اشتِله</td><td class="col-pron-eng">dee hal-te-shtel-e</td><td class="col-meaning">ایستگاه اتوبوس/قطار</td></tr>
+                            <tr><td class="col-german">bestellen</td><td class="col-pron-farsi">بِشتلن</td><td class="col-pron-eng">be-shtel-en</td><td class="col-meaning">سفارش دادن</td></tr>
+                            <tr><td class="col-german">lecker</td><td class="col-pron-farsi">لِکر</td><td class="col-pron-eng">lek-er</td><td class="col-meaning">خوشمزه</td></tr>
+                            <tr><td class="col-german">das Girokonto</td><td class="col-pron-farsi">داس جیروکن‌تو</td><td class="col-pron-eng">das jee-roh-kon-toh</td><td class="col-meaning">حساب جاری بانکی</td></tr>
+                            <tr><td class="col-german">der Studienplatz</td><td class="col-pron-farsi">دِر اشتودین‌پلاتس</td><td class="col-pron-eng">der shtu-deyen-plats</td><td class="col-meaning">سهمیه/پذیرش تحصیلی</td></tr>
+                            <tr><td class="col-german">anrufen</td><td class="col-pron-farsi">آن‌روفن</td><td class="col-pron-eng">an-roo-fen</td><td class="col-meaning">زنگ زدن، تماس تلفنی گرفتن</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- C. Colloquial Grammar Box -->
+            <div class="section-box">
+                <div class="section-header">
+                    <h3>💡 گرامر کاربردی: زمان گذشته پرفکت در مکالمات (Perfekt)</h3>
+                </div>
+                <div class="grammar-box">
+                    <p>در مکالمات روزمره آلمانی (Alltag)، برای صحبت از گذشته به ندرت از زمان گذشته ساده (Präteritum) استفاده می‌شود. در عوض، از زمان گذشته **Perfekt** استفاده می‌کنند. این زمان با کمک فعل کمکی <strong>haben</strong> یا <strong>sein</strong> در جایگاه دوم جمله و ساختار <strong>Partizip II</strong> (معمولاً با پیشوند ge- و پسوند -t یا -en) در انتهای جمله ساخته می‌شود!</p>
+                    <div class="grammar-highlight">
+                        Ich <strong>habe</strong> mit meiner Mutter <strong>telefoniert</strong>. <br>
+                        (من با مادرم تلفنی صحبت کردم.) <br>
+                        Ich <strong>bin</strong> nach Karlsruhe <strong>gekommen</strong>. <br>
+                        (من به کارلسروهه آمدم - جابجایی مکانی از sein استفاده می‌کند.)
+                    </div>
+                </div>
+            </div>
+
+            <!-- D. Substitutable Phrases Box (Sentence Building) -->
+            <div class="section-box">
+                <div class="section-header">
+                    <h3>💬 جملات جادویی و فرمول‌های ساخت جمله</h3>
+                </div>
+                <div class="phrase-grid">
+                    <div class="phrase-card">
+                        <div class="phrase-german">Wie geht es dir? / Wie läuft's?</div>
+                        <div class="phrase-pron-eng">Vee geyt es deer? / Vee loyft-s?</div>
+                        <div class="phrase-meaning">چطوری؟ / اوضاع چطور پیش میره؟ (صمیمانه)</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Du kannst mich gerne <span class="changeable">duzen</span>.</div>
+                        <div class="phrase-pron-eng">Du kanst mikh gehr-ne dut-sen.</div>
+                        <div class="phrase-meaning">می‌توانی راحت باشی و مرا <span class="changeable">تو خطاب کنی</span>.</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Ich vermisse <span class="changeable">meine Familie</span> sehr.</div>
+                        <div class="phrase-pron-eng">Ikh fer-mis-e mai-ne fa-mee-lye zehr.</div>
+                        <div class="phrase-meaning">من خیلی دلم برای <span class="changeable">خانواده‌ام</span> تنگ شده است.</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Ich wohne in einer WG mit <span class="changeable">zwei Mitbewohnern</span>.</div>
+                        <div class="phrase-pron-eng">Ikh voh-ne in ai-ner veh-gey mit tsvai mit-be-voh-nern.</div>
+                        <div class="phrase-meaning">من در یک خانه مشترک با <span class="changeable">دو هم‌خانه‌ای</span> زندگی می‌کنم.</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Ich möchte <span class="changeable">ein Girokonto</span> eröffnen.</div>
+                        <div class="phrase-pron-eng">Ikh moekh-te ain jee-roh-kon-toh er-oef-nen.</div>
+                        <div class="phrase-meaning">من می‌خواهم <span class="changeable">یک حساب جاری</span> افتتاح کنم.</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Welche Tram fährt zum <span class="changeable">Hauptbahnhof</span>?</div>
+                        <div class="phrase-pron-eng">Vel-khe tram fairt tsum haopt-bahn-hof?</div>
+                        <div class="phrase-meaning">کدام تراموا به سمت <span class="changeable">ایستگاه مرکزی قطار</span> می‌رود؟</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Darf ich mich <span class="changeable">hierhin setzen</span>?</div>
+                        <div class="phrase-pron-eng">Darf ikh mikh heer-hin zet-sen?</div>
+                        <div class="phrase-meaning">اجازه هست <span class="changeable">اینجا بنشینم</span>؟</div>
+                    </div>
+                    <div class="phrase-card">
+                        <div class="phrase-german">Ich hätte gerne ein Stück <span class="changeable">Schwarzwälder Kirschtorte</span>.</div>
+                        <div class="phrase-pron-eng">Ikh het-te gehr-ne ain shtuek shvarts-vel-der keer-shtor-te.</div>
+                        <div class="phrase-meaning">من یک تکه <span class="changeable">کیک آلبالوی جنگل سیاه</span> می‌خواهم.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E. 10 Short Stories per Lesson -->
+            <div class="section-box">
+                <div class="section-header">
+                    <h3>📖 ۱۰ داستان و مکالمه واقعی (سطح A1/A2)</h3>
+                </div>
+                <div class="story-container">
+                    
+                    <!-- Story 1 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۱: من و دوستم در پارک قصر (سرگرمی و سفالگری)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Clara: Hi Sarah! Wie läuft dein Karate-Training? Trainierst du fleißig?<br>
+                                Sarah: Hi Clara! Ja, das Training ist super, aber ich bin danach immer sehr müde. Danach töpfere ich noch in meiner WG.<br>
+                                Clara: Krass! Du hast echt viel Energie. Woher kaufst du den Ton zum Töpfern?<br>
+                                Sarah: Ich bestelle den Ton online. Es ist billiger als im Geschäft.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Clara: Hi Sarah! Vee loyft dain ka-rah-te-trey-ning? Trey-neerst du flai-sig?<br>
+                                Sarah: Hi Clara! Ya, das trey-ning ist zoo-per, a-ber ikh bin da-nakh im-er zehr mue-de. Da-nakh toep-fe-re ikh nokh in mai-ner veh-gey.<br>
+                                Clara: Kras! Du hast ekht feel e-ner-gee. Vo-her kaofst du den tohn tsum toep-fern?<br>
+                                Sarah: Ikh be-shtel-e den tohn on-line. Es ist bil-i-ger als im ge-sheft.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                کلارا: سلام سارا! تمرین کاراته‌ات چطور پیش میره؟ سخت تمرین می‌کنی؟<br>
+                                سارا: سلام کلارا! آره، تمرین عالیه، ولی بعدش همیشه خیلی خسته‌ام. بعد از اون، توی خانه مشترکمون سفالگری هم می‌کنم.<br>
+                                کلارا: پسر! (برگ‌ریزون!) تو واقعاً انرژی زیادی داری. گل رس برای سفالگری رو از کجا می‌خری؟<br>
+                                سارا: گل رس رو آنلاین سفارش میدم. از مغازه ارزان‌تر درمیاد.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>fleißig:</strong> کوشا، سخت‌کوش</li>
+                                    <li><strong>Krass!:</strong> برگ‌ریزون، خفن! (عامیانه جوانان)</li>
+                                    <li><strong>billiger als:</strong> ارزان‌تر از</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>قیدهای تکرار مثل <strong>immer</strong> (همیشه) بعد از فعل قرار می‌گیرند. ساختار مقایسه‌ای صفات با افزودن <strong>-er</strong> و کلمه <strong>als</strong> ساخته می‌شود (billiger als = ارزان‌تر از).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 2 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۲: تماس تلفنی با مادر (دلتنگی و آب و هوا)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Sarah: Hallo Mama! Ich habe dich gerade angerufen. Ich vermisse dich und das gute Essen zu Hause so sehr.<br>
+                                Mutter: Hallo mein Schatz! Ich vermisse dich auch. Wie geht es dir in Karlsruhe? Ist das Wetter dort schön?<br>
+                                Sarah: Mir geht es gut. Aber das Wetter hier ist oft regnerisch und kalt. Gestern hat es den ganzen Tag geregnet.<br>
+                                Mutter: Ach, gewöhn dich daran, meine Liebe! Zieh dich immer warm an.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Sarah: Ha-loh Mama! Ikh ha-be dikh ge-rah-de an-ge-roo-fen. Ikh fer-mis-e dikh und das goo-te es-en tsu hao-ze zehr.<br>
+                                Mut-ter: Ha-loh mein shats! Ikh fer-mis-e dikh aokh. Vee geyt es deer in Karlsruhe? Ist das vet-er dort shoen?<br>
+                                Sarah: Meer geyt es goot. A-ber das vet-er heer ist oft rey-gne-rish und kalt. Ges-tern hat es den gan-tsen tahg ge-rey-gnet.<br>
+                                Mut-ter: Akh, ge-voehn dikh da-ran, mai-ne lee-be! Tseeh dikh im-er varm an.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                سارا: سلام مامان! الان بهت زنگ زدم. خیلی دلم برات و برای غذاهای خوب خونه تنگ شده.<br>
+                                مادر: سلام عزیزم (گنج من)! منم دلم برات تنگ شده. کارلسروهه چطوری؟ هوا اونجا خوبه؟<br>
+                                سارا: خوبم. ولی هوا اینجا اغلب بارانی و سرده. دیروز تمام روز بارون بارید.<br>
+                                مادر: آخ، بهش عادت کن عشق من! همیشه گرم لباس بپوش.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>mein Schatz:</strong> عزیزم، گنجم (خطاب صمیمانه به فرزند یا همسر)</li>
+                                    <li><strong>regnerisch:</strong> بارانی</li>
+                                    <li><strong>sich anziehen:</strong> لباس پوشیدن (فعل جداشدنی)</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>فعل جداشدنی <strong>anziehen</strong> در حالت امری صمیمانه به شکل <em>Zieh dich an!</em> تبدیل می‌شود که پیشوند <strong>an</strong> به انتهای جمله می‌رود.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 3 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۳: تماس تلفنی با پدر (بانک و حساب جاری)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Sarah: Hallo Papa! Ich war heute bei der Sparkasse und habe ein Girokonto eröffnet.<br>
+                                Vater: Hallo Sarah! Sehr gut. Wie hoch sind die Gebühren für den Geldtransfer aus dem Ausland?<br>
+                                Sarah: Die Bankangestellte hat gesagt, der Transfer ist mit dem Sperrkonto kostenlos, aber die karte kostet zwölf Euro pro Jahr.<br>
+                                Vater: Das ist in Ordnung. Ich werde dir morgen das Geld für die Miete überweisen.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Sarah: Ha-loh Papa! Ikh var hoy-te bai der shpar-kas-e und ha-be ain jee-roh-kon-toh er-oef-net.<br>
+                                Va-ter: Ha-loh Sarah! Zehr goot. Vee hokh zint dee ge-bueh-ren fuer den geld-trans-fer aus deym aus-land?<br>
+                                Sarah: Dee bank-an-ge-shtel-te hat ge-zahgt, der trans-fer ist mit deym shper-kon-toh kos-ten-lohs, a-ber dee kar-te kos-tet tsvoelf oy-roh pro yahr.<br>
+                                Va-ter: Das ist in ord-nung. Ikh ver-de deer mor-gen das geld fuer dee mee-te ue-ber-vai-zen.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                سارا: سلام بابا! من امروز رفتم بانک اسپارکاسه و یک حساب جاری باز کردم.<br>
+                                پدر: سلام سارا! بسیار عالی. هزینه‌ها (کارمزد) برای انتقال پول از خارج چقدر است؟<br>
+                                سارا: کارمند بانک گفت که انتقال پول با حساب بلوکه‌شده رایگان است، اما کارت سالی دوازده یورو هزینه دارد.<br>
+                                پدر: مشکلی نیست (مرتبه است). من فردا پول اجاره خانه را برایت حواله می‌کنم.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>eröffnen:</strong> افتتاح کردن (حساب جاری)</li>
+                                    <li><strong>pro Jahr:</strong> در سال، سالانه</li>
+                                    <li><strong>überweisen:</strong> حواله کردن، انتقال دادن پول</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>فعل <strong>eröffnen</strong> یک فعل با پیشوند غیرجداشدنی (er-) است، بنابراین Partizip II آن پیشوند ge- نمی‌گیرد و می‌شود <em>eröffnet</em>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 4 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۴: گفتگو بین پدر و مادر در خانه (نگرانی و افتخار)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Mutter: Ich mache mir Sorgen um Sarah. Sie ist ganz allein in Deutschland. Meinst du, es geht ihr gut?<br>
+                                Vater: Keine Sorge! Sie ist eine kluge und starke Frau. Sie studiert Informatik am KIT, das schafft nicht jeder.<br>
+                                Mutter: Ja, das stimmt. Ich bin so stolz auf sie. Sie hat hart für den Studienplatz gearbeitet.<br>
+                                Vater: Wir haben sie gut vorbereitet. Sie wird das schaffen!
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Mut-ter: Ikh ma-khe meer zor-gen um Sarah. Zee ist gants al-ain in doitsh-land. Mainst du, es geyt eer goot?<br>
+                                Va-ter: Kai-ne zor-ge! Zee ist ai-ne kloo-ge und shtahr-ke frao. Zee shtu-deert in-for-mah-tik am KIT, das shaft nikht yey-der.<br>
+                                Mut-ter: Ya, das shtimt. Ikh bin zoh shtolts auf zee. Zee hat hart fuer den shtu-deyen-plats ge-ar-bai-tet.<br>
+                                Va-ter: Veer ha-ben zee goot for-be-rai-tet. Zee virt das shaf-en!
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                مادر: من نگران سارا هستم. اون توی آلمان کاملاً تنهاست. به نظرت حالش خوبه؟<br>
+                                پدر: نگران نباش! اون دختر باهوش و قوی‌ای هست. اون داره در دانشگاه KIT کامپیوتر می‌خونه، کار هرکسی نیست.<br>
+                                مادر: آره، درسته. من خیلی بهش افتخار می‌کنم. برای قبولی و سهمیه تحصیلی خیلی سخت تلاش کرد.<br>
+                                پدر: ما اون رو خوب آماده کردیم. از پسش برمیاد!
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>sich Sorgen machen um:</strong> نگران کسی/چیزی بودن</li>
+                                    <li><strong>schaffen:</strong> از پس کاری برآمدن، موفق شدن</li>
+                                    <li><strong>stolz sein auf (+ Akkusativ):</strong> افتخار کردن به کسی</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>حرف اضافه <strong>um</strong> و <strong>auf</strong> در این داستان مفعول آکوزاتیو (مفعول مستقیم) می‌گیرند (um Sarah / auf sie).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 5 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۵: گفتگو با یک فرد غریبه در ایستگاه تراموا (مسیریابی)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Sarah: Entschuldigung, fährt diese Straßenbahn zum Marktplatz? Ich habe mich verlaufen.<br>
+                                Fremder: Ja, die Linie 1 fährt direkt dorthin. Sie müssen nicht umsteigen.<br>
+                                Sarah: Oh, super! Und wie viele Stationen sind es bis dahin?<br>
+                                Fremder: Es sind nur drei Haltestellen. Sie sind in fünf Minuten da. Die Bahn kommt gleich.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Sarah: Ent-shul-dee-gung, fairt dee-ze shtrah-sen-bahn tsum mark-plats? Ikh ha-be mikh fer-lao-fen.<br>
+                                Frem-der: Ya, dee lee-nye eins fairt dee-rekt dort-hin. Zee mues-en nikht um-shtai-gen.<br>
+                                Sarah: Oh, zoo-per! Und vee fee-le shtah-tsyo-nen zint es bis da-hin?<br>
+                                Frem-der: Es zint noor drai hal-te-shtel-en. Zee zint in fuenf mee-noo-ten dah. Dee bahn komt glaikh.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                سارا: ببخشید، آیا این تراموا به میدان مارکت‌پلاتز می‌رود؟ من مسیرم را گم کرده‌ام.<br>
+                                غریبه: بله، خط ۱ مستقیماً به آنجا می‌رود. نیازی نیست قطارتان را عوض کنید.<br>
+                                سارا: اوه، عالیه! و چند ایستگاه تا آنجا فاصله هست؟<br>
+                                غریبه: فقط سه ایستگاه است. پنج دقیقه‌ای آنجا هستید. قطار الان می‌رسد.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>sich verlaufen:</strong> پیاده مسیر خود را گم کردن</li>
+                                    <li><strong>direkt dorthin:</strong> مستقیماً به آنجا</li>
+                                    <li><strong>gleich:</strong> الان، به زودی</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>حرف اضافه <strong>in</strong> برای بیان زمان آینده با داتیو همراه می‌شود (in fünf Minuten = در ۵ دقیقه دیگر).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 6 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۶: داستان سفارش در کافه (کیک معروف جنگل سیاه)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Kellner: Guten Tag! Was darf ich Ihnen bringen?<br>
+                                Sarah: Guten Tag! Ich hätte gerne ein Stück Schwarzwälder Kirschtorte und eine Tasse Kaffee, bitte.<br>
+                                Kellner: Sehr gerne. Möchten Sie den Kaffee mit Milch und Zucker?<br>
+                                Sarah: Nein, schwarz, bitte. Und kann ich hier mit Karte bezahlen?<br>
+                                Kellner: Ja, kontaktlose Zahlung ist ab fünf Euro möglich.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Kel-ner: Gu-ten tahg! Vas darf ikh ee-nen bring-en?<br>
+                                Sarah: Gu-ten tahg! Ikh het-te gehr-ne ain shtuek shvarts-vel-der keer-shtor-te und ai-ne tas-e kaf-ee, bi-te.<br>
+                                Kel-ner: Zehr gehr-ne. Moe-khten zee den kaf-ee mit milkh und tsuk-er?<br>
+                                Sarah: Nain, shvarts, bi-te. Und kan ikh heer mit kar-te be-tsah-len?<br>
+                                Kel-ner: Ya, kon-takt-loh-ze tsah-lung ist ap fuenf oy-roh moeg-likh.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                پیشخدمت: روز بخیر! چه چیزی می‌توانم برایتان بیاورم؟<br>
+                                سارا: روز بخیر! من یک تکه کیک آلبالوی جنگل سیاه و یک فنجان قهوه می‌خواهم، لطفاً.<br>
+                                پیشخدمت: با کمال میل. قهوه را با شیر و شکر میل دارید؟<br>
+                                سارا: نه، تلخ (سیاه) لطفاً. و آیا می‌توانم اینجا با کارت پرداخت کنم؟<br>
+                                پیشخدمت: بله، پرداخت بدون تماس از ۵ یورو به بالا امکان‌پذیر است.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>Ich hätte gerne:</strong> من تمایل دارم/می‌خواهم (مودبانه)</li>
+                                    <li><strong>schwarz:</strong> سیاه (برای قهوه یعنی قهوه تلخ بدون شیر)</li>
+                                    <li><strong>möglich:</strong> ممکن، امکان‌پذیر</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>عبارت <strong>Ich hätte gerne</strong> ساختار وجه تمنایی (Konjunktiv II) از فعل haben است که برای سفارش‌های فوق‌العاده مودبانه استفاده می‌شود.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 7 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۷: اولین روز دانشگاه (آشنایی با هم‌کلاسی جدید)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Sarah: Hallo! Entschuldigung, ist dieser Platz neben dir noch frei?<br>
+                                Max: Hallo! Ja, der Platz ist frei. Setz dich gerne. Ich bin Max. Und du?<br>
+                                Sarah: Ich heiße Sarah. Ich habe heute meine erste Vorlesung in Informatik. Ich bin etwas nervös.<br>
+                                Max: Freut mich, Sarah! Keine Sorge, der Professor ist sehr nett. Studierst du im ersten Semester?
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Sarah: Ha-loh! Ent-shul-dee-gung, ist dee-zer plats ney-ben deer nokh frai?<br>
+                                Max: Ha-loh! Ya, der plats ist frai. Zets dikh gehr-ne. Ikh bin Max. Und doo?<br>
+                                Sarah: Ikh hai-se Sarah. Ikh ha-be hoy-te mai-ne ehrs-te for-lay-zung in in-for-mah-tik. Ikh bin et-vas ner-voes.<br>
+                                Max: Froit mikh, Sarah! Kai-ne zor-ge, der pro-fes-or ist zehr net. Shtu-deerst du im ehrs-ten ze-mes-ter?
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                سارا: سلام! ببخشید، این صندلی کنار شما خالی است؟<br>
+                                مکس: سلام! بله، صندلی خالیه. راحت باش بنشین. من مکس هستم. تو چی؟<br>
+                                سارا: اسم من ساراست. من امروز اولین کلاس درسم در رشته کامپیوتر رو دارم. یکم استرس دارم.<br>
+                                مکس: خوشبختم سارا! نگران نباش، استادش خیلی مهربان و خوبه. ترم اولی هستی؟
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>neben (+ Dativ):</strong> در کنارِ (حرف اضافه داتیو ساز مکانی)</li>
+                                    <li><strong>nervös:</strong> مضطرب، دارای استرس</li>
+                                    <li><strong>Keine Sorge:</strong> نگران نباش، غم نداری</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>امری صمیمانه برای نشستن: <em>Setz dich!</em> (بنشین!) از فعل انعکاسی <strong>sich setzen</strong> ساخته می‌شود.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 8 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۸: خرید خاک رس برای سرگرمی سفالگری (صنایع دستی)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Verkäufer: Guten Tag. Kann ich Ihnen helfen? Suchen Sie etwas Bestimmtes?<br>
+                                Sarah: Guten Tag. Ja, ich suche Ton zum Töpfern. Haben Sie feinen weißen Ton?<br>
+                                Verkäufer: Ja, wir haben weichen Ton in Fünf-Kilo-Paketen. Ein Paket kostet acht Euro.<br>
+                                Sarah: Perfekt, ich nehme zwei Pakete. Haben Sie auch Modellierwerkzeug da?<br>
+                                Verkäufer: Ja, im Gang vier haben wir Werkzeuge für Holzarbeiten und Keramik.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Fer-kaoy-fer: Gu-ten tahg. Kan ikh ee-nen hel-fen? Zoo-khen zee et-vas be-shtim-tes?<br>
+                                Sarah: Gu-ten tahg. Ya, ikh zu-khe tohn tsum toep-fern. Ha-ben zee fai-nen vai-sen tohn?<br>
+                                Fer-kaoy-fer: Ya, veer ha-ben vai-khen tohn in fuenf-kee-loh-pa-key-ten. Ain pa-keyt kos-tet akht oy-roh.<br>
+                                Sarah: Per-fekt, ikh ney-me tsvai pa-key-te. Ha-ben zee aokh mo-de-leer-verk-tsoyg dah?<br>
+                                Fer-kaoy-fer: Ya, im gang feer ha-ben veer verk-tsoy-ge fuer holts-ar-bai-ten und ke-rah-mik.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                فروشنده: روز بخیر. می‌تونم کمکتون کنم؟ دنبال چیز خاصی می‌گردید؟<br>
+                                سارا: روز بخیر. بله، من دنبال گل رس برای سفالگری می‌گردم. گل رس سفید و باکیفیت دارید؟<br>
+                                فروشنده: بله، ما گل رس نرم در بسته‌های ۵ کیلویی داریم. هر بسته هشت یورو است.<br>
+                                سارا: عالیه، من دو بسته می‌برم. ابزار کار با گل (مدل‌سازی) هم دارید؟<br>
+                                فروشنده: بله، در راهروی شماره ۴ ابزارهای کار با چوب و سرامیک را داریم.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>etwas Bestimmtes:</strong> چیز خاصی</li>
+                                    <li><strong>ich nehme:</strong> من می‌برم، برمی‌دارم (در خرید یعنی خریدن)</li>
+                                    <li><strong>das Werkzeug:</strong> ابزار کار</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>حرف اضافه <strong>in</strong> برای بیان مکان‌های قفسه یا راهرو در فروشگاه با داتیو همراه می‌شود (im Gang = in dem Gang).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 9 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۹: گفتگو با همسایه درباره تفکیک زباله (قوانین سخت در آلمان)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Nachbar: Hallo Sarah, Entschuldigung! Ich habe gesehen, dass du Plastik in den Restmüll geworfen hast.<br>
+                                Sarah: Oh, hallo! Tut mir leid. Ist das falsch? In Iran haben wir keine so strenge Mülltrennung.<br>
+                                Nachbar: Ja, in Deutschland trennen wir Plastik, Papier, Biomüll und Glas. Plastik gehört in den Gelben Sack.<br>
+                                Sarah: Ah, okay! Vielen Dank für die Erklärung. Ich werde mich ab jetzt daran halten.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Nakh-bar: Ha-loh Sarah, Ent-shul-dee-gung! Ikh ha-be ge-zey-hen, das du plas-tik in den rest-muel ge-vor-fen hast.<br>
+                                Sarah: Oh, ha-loh! Toot meer laid. Ist das falsh? In Iran ha-ben veer kai-ne zoh shtreng-e muel-tren-ung.<br>
+                                Nachbar: Ya, in doitsh-land tren-en veer plas-tik, pa-peer, bee-oh-muel und glahs. Plastik ge-hoert in den gel-ben zak.<br>
+                                Sarah: Ah, oh-key! Fee-len dank fuer dee er-klae-rung. Ikh ver-de mikh ap yetst da-ran hal-ten.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                همسایه: سلام سارا، ببخشید! من دیدم که پلاستیک را در سطل زباله‌های مخلوط (Restmüll) انداختی.<br>
+                                سارا: اوه، سلام! متاسفم. اشتباهه؟ در ایران ما تفکیک زباله به این سختی نداریم.<br>
+                                همسایه: بله، در آلمان ما پلاستیک، کاغذ، زباله‌های ارگانیک و شیشه را تفکیک می‌کنیم. پلاستیک متعلق به کیسه زرد (Gelber Sack) است.<br>
+                                سارا: آه، بسیار خب! خیلی ممنون برای توضیحتون. از الان به بعد رعایتش می‌کنم.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>der Restmüll:</strong> زباله‌های غیرقابل بازیافت مخلوط</li>
+                                    <li><strong>der Gelbe Sack:</strong> کیسه زرد رنگ مخصوص پلاستیک و فلزات سبک</li>
+                                    <li><strong>die Erklärung:</strong> توضیح، تشریح</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>فعل جداشدنی <strong>sich halten an (+ Akkusativ)</strong> یعنی رعایت کردن قانون یا به عهد خود وفا کردن.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Story 10 -->
+                    <div class="story-item">
+                        <div class="story-badge">دیالوگ ۱۰: داستان آشپزی گروهی در خانه مشترک (زندگی دانشجویی)</div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇩🇪 متن آلمانی (Pure German):</div>
+                            <p class="german-text">
+                                Mitbewohner: Sarah, wir haben heute Abend nichts zu essen. Wollen wir zusammen kochen?<br>
+                                Sarah: Ja, gerne! Ich habe Lust auf Nudeln mit Tomatensoße. Hast du alle Zutaten da?<br>
+                                Mitbewohner: Wir haben Nudeln und Zwiebeln, aber wir müssen noch Tomaten kaufen.<br>
+                                Sarah: Kein Problem, der Supermarkt Netto um die Ecke hat bis zweiundzwanzig Uhr geöffnet. Ich gehe schnell hin.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🗣️ تلفظ انگلیسی (Phonetic Transliteration):</div>
+                            <p class="phonetic-text">
+                                Mit-be-voh-ner: Sarah, veer ha-ben hoy-te ah-bent nikhts tsu es-en. Vol-en veer tsu-zam-en kokh-en?<br>
+                                Sarah: Ya, gehr-ne! Ikh ha-be lust auf noo-deln mit toh-mah-ten-zoh-se. Hast du al-le tsu-tah-ten dah?<br>
+                                Mit-be-voh-ner: Veer ha-ben noo-deln und tsvee-beln, a-ber veer mues-en nokh toh-mah-ten kao-fen.<br>
+                                Sarah: Kain pro-bleym, der zoo-per-markt Netto um dee ek-e hat bis tsvai-und-tsvan-tsikh oor ge-oef-net. Ikh gey shnel hin.
+                            </p>
+                        </div>
+                        <div class="story-subsection">
+                            <div class="story-subheading">🇮🇷 ترجمه فارسی (Persian Translation):</div>
+                            <p class="translation-text">
+                                هم‌خانه‌ای: سارا، ما امشب چیزی واسه خوردن نداریم. می‌خوای با هم آشپزی کنیم؟<br>
+                                سارا: آره، حتماً! هوس پاستا (نودل) با سس گوجه فرنگی کردم. همه مواد اولیه رو داری؟<br>
+                                هم‌خانه‌ای: پاستا و پیاز داریم، ولی باید گوجه‌فرنگی بخریم.<br>
+                                سارا: مشکلی نیست، سوپرمارکت نتو (Netto) سر کوچه تا ساعت ۱۰ شب بازه. من سریع میرم می‌خرم.
+                            </p>
+                        </div>
+                        <div class="story-meta-grid">
+                            <div class="story-meta-box vocab">
+                                <div class="story-meta-title">🔑 واژگان کلیدی داستان:</div>
+                                <ul>
+                                    <li><strong>Lust haben auf (+ Akkusativ):</strong> میل/هوس داشتن به چیزی</li>
+                                    <li><strong>die Zutaten:</strong> مواد اولیه غذا</li>
+                                    <li><strong>um die Ecke:</strong> سر کوچه، این نزدیکی‌ها</li>
+                                </ul>
+                            </div>
+                            <div class="story-meta-box grammar">
+                                <div class="story-meta-title">⚙️ نکته گرامری داستان:</div>
+                                <p>ساختار <strong>Lust haben zu (+ verb)</strong> برای انجام کارها و <strong>Lust haben auf (+ noun)</strong> برای خواستن چیزها/غذاها به کار می‌رود.</p>
                             </div>
                         </div>
                     </div>
