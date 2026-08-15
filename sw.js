@@ -2,6 +2,7 @@ const CACHE_NAME = "german-survival-cache-v1";
 const ASSETS = [
   "./",
   "./index.html",
+  "./index2.html",
   "./manifest.json",
   "./icon.svg"
 ];

@@ -7,6 +7,11 @@
     <meta name="theme-color" content="#FF8DA1">
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon.svg">
+    <script>
+        if (window.innerWidth <= 768) {
+            window.location.href = "index2.html";
+        }
+    </script>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
     
@@ -337,6 +342,39 @@
 
         .section-box:hover {
             box-shadow: var(--card-shadow-hover);
+        }
+
+        summary {
+            list-style: none;
+            outline: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary .section-header {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        summary .section-header::after {
+            content: "➕";
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            margin-right: auto;
+            margin-left: 10px;
+        }
+        details[open] summary .section-header::after {
+            content: "➖";
+        }
+        details[open] .section-header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--primary-pink);
+            padding-bottom: 15px;
         }
 
         .section-header {
@@ -849,73 +887,7 @@
             <p>سلام دختر قوی و باهوش! این راهنمای فشرده و عمیق طراحی شده تا تو رو برای همه‌چیز در آلمان آماده کنه؛ از لحظه ورود به فرودگاه تا خرید سیم‌کارت، سر و کله زدن با اداره مهاجرت، دانشگاه KIT، و پیدا کردن دوست‌های جدید و معاشرت درباره برنامه‌نویسی و سفالگری! آماده‌ای؟ بزن بریم! 💻🎒✨</p>
         </header>
 
-        <!-- Gender & Grammar Tip Box -->
-        <section class="section-box" style="border-right: 8px solid var(--dark-lavender); background-color: var(--light-lavender); margin-bottom: 40px;">
-            <div class="section-header" style="border-bottom-color: var(--dark-lavender);">
-                <span style="font-size: 1.8rem;">🚺</span>
-                <h3 style="color: var(--dark-lavender); font-family: 'Vazirmatn', sans-serif;">راهنمای هویت و جنسیت در زبان آلمانی (برای خانم‌ها)</h3>
-            </div>
-            <div class="grammar-box" style="background: white; border-right: none; padding: 20px; border-radius: 12px; margin-bottom: 0;">
-                <p>در زبان آلمانی، بر خلاف انگلیسی یا فارسی، مشاغل، نقش‌ها و هویت‌های اجتماعی به شدت <strong>دارای جنسیت (Gendern)</strong> هستند. از آنجایی که تو یک <strong>زن (Frau)</strong> هستی، در مکالمات خود حتماً باید از اشکال مؤنث کلمات استفاده کنی. این کار بسیار ساده است اما نشانه تسلط و احترام به هویت خودت در فرهنگ آلمانی است.</p>
-                
-                <h4 style="margin: 15px 0 10px 0; color: var(--dark-pink); font-size: 1.1rem;">💡 فرمول تبدیل هویت به مؤنث:</h4>
-                <p>کافیست به انتهای نقش یا شغل خود پسوند <strong style="color: var(--dark-pink); font-size: 1.2rem;">-in</strong> اضافه کنی! (در حالت جمع، پسوند <strong style="color: var(--dark-pink); font-size: 1.2rem;">-innen</strong> خواهد بود).</p>
-                
-                <div class="vocab-table-wrapper" style="margin-top: 15px;">
-                    <table class="vocab-table" style="text-align: right; width: 100%;">
-                        <thead>
-                            <tr style="background-color: var(--primary-pink);">
-                                <th style="color: var(--dark-pink); padding: 10px; text-align: right;">نقش/شغل</th>
-                                <th style="color: var(--dark-pink); padding: 10px; text-align: left; direction: ltr;">شکل مذکر (Male)</th>
-                                <th style="color: var(--dark-pink); padding: 10px; text-align: left; direction: ltr;">شکل مؤنث شما (Female)</th>
-                                <th style="color: var(--dark-pink); padding: 10px; text-align: right;">توضیحات و تفاوت</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>دانشجو</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Student</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Studentin</td>
-                                <td>اگر یک پسر بخواهد بگوید «من دانشجو هستم» می‌گوید: <em>Ich bin Student</em>. شما حتماً می‌گویید: <em>Ich bin Studentin</em>.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>برنامه‌نویس</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Entwickler</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Entwicklerin</td>
-                                <td>پسر: <em>Ich bin Entwickler</em> | شما: <em>Ich bin Entwicklerin</em> (توسعه‌دهنده زن).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>دوست</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Freund</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Freundin</td>
-                                <td>پسر: <em>mein Freund</em> (دوست پسرم/دوست مذکرم) | شما برای دوست مؤنث: <em>meine Freundin</em>.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>هم‌دانشگاهی</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Kommilitone</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Kommilitonin</td>
-                                <td>همکلاسی پسر: <em>Kommilitone</em> | همکلاسی دختر: <em>Kommilitonin</em>.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>مبتدی</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Anfänger</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Anfängerin</td>
-                                <td>پسر مبتدی: <em>Anfänger</em> | شما به عنوان دختر مبتدی در کاراته: <em>Anfängerin</em>.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>یابنده</strong></td>
-                                <td style="direction: ltr; text-align: left;">der Finder</td>
-                                <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Finderin</td>
-                                <td>پسر یابنده: <em>Finder</em> | دختر یابنده: <em>Finderin</em>.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <h4 style="margin: 20px 0 10px 0; color: var(--dark-pink); font-size: 1.1rem;">⚠️ نکته مهم آرتیکل‌ها (der vs. die):</h4>
-                <p>برای تمام نقش‌های مذکر از حرف تعریف <strong>der</strong> و برای مؤنث از حرف تعریف <strong>die</strong> استفاده می‌شود. در زمان آدرس‌دهی، خرید و گفتگوها، اگر کارمندی که با او صحبت می‌کنید خانم باشد، حتماً از القابی مثل <em>die Beamtin</em> (کارمند زن)، <em>die Apothekerin</em> (داروساز زن)، یا <em>die Ärztin</em> (خانم دکتر) استفاده کنید. اما اگر کارمند آقا باشد از واژگان مذکر یعنی <em>der Beamte</em>، <em>der Apotheker</em> و <em>der Arzt</em> استفاده می‌شود.</p>
-            </div>
-        </section>
+        <!-- Gender Box was moved to Lesson 1 -->
 
         <!-- Search Results Box -->
         <section class="search-results-box" id="searchResultsBox">
@@ -957,6 +929,74 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Gender & Grammar Tip Box -->
+            <section class="section-box" style="border-right: 8px solid var(--dark-lavender); background-color: var(--light-lavender); margin: 25px 0 35px 0;">
+                <div class="section-header" style="border-bottom-color: var(--dark-lavender);">
+                    <span style="font-size: 1.8rem;">🚺</span>
+                    <h3 style="color: var(--dark-lavender); font-family: 'Vazirmatn', sans-serif;">راهنمای هویت و جنسیت در زبان آلمانی (برای خانم‌ها)</h3>
+                </div>
+                <div class="grammar-box" style="background: white; border-right: none; padding: 20px; border-radius: 12px; margin-bottom: 0;">
+                    <p>در زبان آلمانی، بر خلاف انگلیسی یا فارسی، مشاغل، نقش‌ها و هویت‌های اجتماعی به شدت <strong>دارای جنسیت (Gendern)</strong> هستند. از آنجایی که تو یک <strong>زن (Frau)</strong> هستی، در مکالمات خود حتماً باید از اشکال مؤنث کلمات استفاده کنی. این کار بسیار ساده است اما نشانه تسلط و احترام به هویت خودت در فرهنگ آلمانی است.</p>
+                    
+                    <h4 style="margin: 15px 0 10px 0; color: var(--dark-pink); font-size: 1.1rem;">💡 فرمول تبدیل هویت به مؤنث:</h4>
+                    <p>کافیست به انتهای نقش یا شغل خود پسوند <strong style="color: var(--dark-pink); font-size: 1.2rem;">-in</strong> اضافه کنی! (در حالت جمع، پسوند <strong style="color: var(--dark-pink); font-size: 1.2rem;">-innen</strong> خواهد بود).</p>
+                    
+                    <div class="vocab-table-wrapper" style="margin-top: 15px;">
+                        <table class="vocab-table" style="text-align: right; width: 100%;">
+                            <thead>
+                                <tr style="background-color: var(--primary-pink);">
+                                    <th style="color: var(--dark-pink); padding: 10px; text-align: right;">نقش/شغل</th>
+                                    <th style="color: var(--dark-pink); padding: 10px; text-align: left; direction: ltr;">شکل مذکر (Male)</th>
+                                    <th style="color: var(--dark-pink); padding: 10px; text-align: left; direction: ltr;">شکل مؤنث شما (Female)</th>
+                                    <th style="color: var(--dark-pink); padding: 10px; text-align: right;">توضیحات و تفاوت</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>دانشجو</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Student</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Studentin</td>
+                                    <td>اگر یک پسر بخواهد بگوید «من دانشجو هستم» می‌گوید: <em>Ich bin Student</em>. شما حتماً می‌گویید: <em>Ich bin Studentin</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>برنامه‌نویس</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Entwickler</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Entwicklerin</td>
+                                    <td>پسر: <em>Ich bin Entwickler</em> | شما: <em>Ich bin Entwicklerin</em> (توسعه‌دهنده زن).</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>دوست</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Freund</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Freundin</td>
+                                    <td>پسر: <em>mein Freund</em> (دوست پسرم/دوست مذکرم) | شما برای دوست مؤنث: <em>meine Freundin</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>هم‌دانشگاهی</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Kommilitone</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Kommilitonin</td>
+                                    <td>همکلاسی پسر: <em>Kommilitone</em> | همکلاسی دختر: <em>Kommilitonin</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>مبتدی</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Anfänger</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Anfängerin</td>
+                                    <td>پسر مبتدی: <em>Anfänger</em> | شما به عنوان دختر مبتدی در کاراته: <em>Anfängerin</em>.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>یابنده</strong></td>
+                                    <td style="direction: ltr; text-align: left;">der Finder</td>
+                                    <td style="direction: ltr; text-align: left; color: var(--dark-pink); font-weight: bold;">die Finderin</td>
+                                    <td>پسر یابنده: <em>Finder</em> | دختر یابنده: <em>Finderin</em>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h4 style="margin: 20px 0 10px 0; color: var(--dark-pink); font-size: 1.1rem;">⚠️ نکته مهم آرتیکل‌ها (der vs. die):</h4>
+                    <p>برای تمام نقش‌های مذکر از حرف تعریف <strong>der</strong> و برای مؤنث از حرف تعریف <strong>die</strong> استفاده می‌شود. در زمان آدرس‌دهی، خرید و گفتگوها، اگر کارمندی که با او صحبت می‌کنید خانم باشد، حتماً از القابی مثل <em>die Beamtin</em> (کارمند زن)، <em>die Apothekerin</em> (داروساز زن)، یا <em>die Ärztin</em> (خانم دکتر) استفاده کنید. اما اگر کارمند آقا باشد از واژگان مذکر یعنی <em>der Beamte</em>، <em>der Apotheker</em> و <em>der Arzt</em> استفاده می‌شود.</p>
+                </div>
+            </section>
 
             <!-- B. Vocabulary List (25-30 Words) -->
             <div class="section-box">
@@ -3282,6 +3322,7 @@
 
     // Initialize Vocab Data from DOM tables for instant search
     document.addEventListener("DOMContentLoaded", () => {
+        // 1. Read row texts to load vocab search DB
         const rows = document.querySelectorAll(".vocab-table tbody tr");
         rows.forEach(row => {
             const cells = row.querySelectorAll("td");
@@ -3293,6 +3334,34 @@
                     meaning: cells[3].innerText
                 });
             }
+        });
+
+        // 2. Convert all .section-box div cards to collapsible details/summary accordions
+        const sections = document.querySelectorAll(".section-box");
+        sections.forEach(section => {
+            // Create details tag
+            const details = document.createElement("details");
+            details.className = section.className;
+            if (section.getAttribute("style")) {
+                details.setAttribute("style", section.getAttribute("style"));
+            }
+            details.open = true; // Set open by default
+
+            // Create summary tag
+            const summary = document.createElement("summary");
+            const header = section.querySelector(".section-header");
+            if (header) {
+                summary.appendChild(header);
+                details.appendChild(summary);
+            }
+
+            // Move children
+            while (section.firstChild) {
+                details.appendChild(section.firstChild);
+            }
+
+            // Swap in the DOM
+            section.parentNode.replaceChild(details, section);
         });
     });
 

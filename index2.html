@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>آلمانی بقا 🌸 | نسخه موبایل</title>
+    <meta name="theme-color" content="#FF8DA1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.svg">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        // Redirect to desktop version if screen is wide
+        if (window.innerWidth > 768) {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary-pink: #FFDEE9;
+            --dark-pink: #FF8DA1;
+            --pastel-pink: #FFF0F2;
+            --accent-lavender: #E2D9F3;
+            --dark-lavender: #9C8EB9;
+            --light-lavender: #F4F0FB;
+            --pastel-mint: #E8F5E9;
+            --dark-mint: #81C784;
+            --pastel-blue: #E3F2FD;
+            --dark-blue: #64B5F6;
+            --pastel-peach: #FFE0B2;
+            --dark-peach: #FFB74D;
+            --text-color: #4A4A4A;
+            --dark-text: #2D2D2D;
+            --white: #FFFFFF;
+            --border-radius-lg: 20px;
+            --border-radius-md: 12px;
+            --border-radius-sm: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Vazirmatn', 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #FFEBEF 0%, #F4F0FB 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 80px; /* Space for sticky bar */
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--dark-text);
+            font-family: 'Quicksand', 'Vazirmatn', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px;
+            border-bottom: 2px solid var(--primary-pink);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .header-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-title-row h1 {
+            font-size: 1.25rem;
+            color: var(--dark-pink);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Mobile Search */
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 35px 10px 15px;
+            border: 2px solid var(--accent-lavender);
+            border-radius: var(--border-radius-md);
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--dark-pink);
+        }
+
+        .search-box::after {
+            content: "🔍";
+            position: absolute;
+            right: 12px;
+            top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* Views management */
+        .view {
+            display: none;
+            padding: 15px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home View Grid */
+        .intro-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 182, 193, 0.1);
+            text-align: center;
+        }
+
+        .intro-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .lesson-btn-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            border: 2px solid var(--primary-pink);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            text-align: right;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .lesson-btn-card:active {
+            background: var(--pastel-pink);
+            transform: scale(0.98);
+        }
+
+        .lesson-btn-emoji {
+            font-size: 2.2rem;
+            background: var(--pastel-pink);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lesson-btn-info {
+            flex: 1;
+        }
+
+        .lesson-btn-info span {
+            font-size: 0.8rem;
+            color: var(--dark-pink);
+            font-weight: 700;
+        }
+
+        .lesson-btn-info h3 {
+            font-size: 1rem;
+            color: var(--dark-text);
+            margin-top: 2px;
+        }
+
+        /* Lesson View Header */
+        .lesson-view-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: var(--white);
+            border: 2px solid var(--primary-pink);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--dark-pink);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Collapsible Section Cards */
+        .section-box {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 182, 193, 0.08);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-pink);
+            width: 100%;
+        }
+
+        .section-header h3 {
+            font-size: 1.15rem;
+            color: var(--dark-pink);
+        }
+
+        /* Mobile Collapsible styling */
+        summary {
+            list-style: none;
+            outline: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary .section-header {
+            border-bottom: none;
+            padding-bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary .section-header::after {
+            content: "➕";
+            font-size: 1rem;
+        }
+        details[open] summary .section-header::after {
+            content: "➖";
+        }
+        details[open] .section-header {
+            border-bottom: 2px solid var(--primary-pink);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Mobile Table to Cards conversion */
+        .vocab-table, .vocab-table tbody, .vocab-table tr, .vocab-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .vocab-table thead {
+            display: none; /* Hide header completely */
+        }
+
+        .vocab-table tr {
+            background: #fff;
+            border: 2px solid var(--primary-pink);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 12px;
+            padding: 12px;
+            box-shadow: 0 2px 6px rgba(255, 182, 193, 0.05);
+        }
+
+        .vocab-table td {
+            padding: 4px 0;
+            border: none;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .col-german {
+            font-size: 1.1rem !important;
+            color: var(--dark-pink) !important;
+            font-weight: 700;
+            border-bottom: 1px dashed var(--primary-pink) !important;
+            padding-bottom: 6px !important;
+            margin-bottom: 6px;
+            direction: ltr;
+            text-align: left !important;
+        }
+
+        .col-pron-farsi::before {
+            content: "🗣️ تلفظ فارسی: ";
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .col-pron-eng {
+            direction: ltr;
+            text-align: left !important;
+        }
+
+        .col-pron-eng::before {
+            content: "🎙️ تلفظ صوتی: ";
+            font-size: 0.75rem;
+            color: #888;
+            float: right;
+            direction: rtl;
+        }
+
+        .col-meaning::before {
+            content: "🇮🇷 معنی: ";
+            font-weight: 700;
+            color: #555;
+        }
+
+        /* Gender guide table mobile style override */
+        .gender-table-mobile, .gender-table-mobile tbody, .gender-table-mobile tr, .gender-table-mobile td {
+            display: block;
+            width: 100%;
+        }
+        .gender-table-mobile thead {
+            display: none;
+        }
+        .gender-table-mobile tr {
+            border: 1px solid var(--accent-lavender);
+            background: var(--light-lavender);
+            border-radius: var(--border-radius-md);
+            margin-bottom: 12px;
+            padding: 12px;
+        }
+        .gender-table-mobile td {
+            padding: 4px 0;
+            text-align: right;
+        }
+
+        /* Grammar Box mobile styling */
+        .grammar-box {
+            background: var(--light-lavender);
+            border-right: 5px solid var(--dark-lavender);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .grammar-highlight {
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: var(--border-radius-sm);
+            margin: 8px 0;
+            border-left: 3px solid var(--dark-lavender);
+            direction: ltr;
+            text-align: left;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        /* Phrase Card Mobile styling */
+        .phrase-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .phrase-card {
+            background: var(--white);
+            border: 2px solid var(--primary-pink);
+            border-radius: var(--border-radius-md);
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+        }
+
+        .phrase-german {
+            direction: ltr;
+            text-align: left;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            color: var(--dark-pink);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .phrase-german .changeable {
+            color: #3f51b5;
+            background: #e8eaf6;
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        .phrase-pron-eng {
+            direction: ltr;
+            text-align: left;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 0.8rem;
+            color: #7986cb;
+            margin-bottom: 6px;
+        }
+
+        .phrase-meaning {
+            font-size: 0.9rem;
+            color: var(--dark-text);
+        }
+
+        /* Mobile WhatsApp style stories */
+        .story-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .story-item {
+            background: #efe7dd; /* Classic WhatsApp Chat BG */
+            border-radius: var(--border-radius-lg);
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .story-badge {
+            background: var(--dark-pink);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        /* Bubble core layout */
+        .chat-bubble {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: var(--border-radius-md);
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Sarah's bubble (Pink, aligns right, RTL) */
+        .chat-bubble.sarah {
+            align-self: flex-start;
+            background: #FFDEE9; /* Pastel pink */
+            color: var(--dark-text);
+            border-top-right-radius: 0;
+            text-align: right;
+        }
+
+        /* Other's bubble (White/Lavender, aligns left, LTR) */
+        .chat-bubble.other {
+            align-self: flex-end;
+            background: #FFFFFF;
+            color: var(--dark-text);
+            border-top-left-radius: 0;
+            text-align: left;
+        }
+
+        /* Inside bubbles texts */
+        .bubble-german {
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            color: #2b2b2b;
+            margin-bottom: 3px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .bubble-pron {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 3px;
+            display: block;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .bubble-farsi {
+            font-size: 0.85rem;
+            color: #333;
+            display: block;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            padding-top: 3px;
+            margin-top: 3px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .story-meta-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .story-meta-box {
+            padding: 12px;
+            border-radius: var(--border-radius-md);
+            font-size: 0.85rem;
+        }
+
+        .story-meta-box.vocab {
+            background-color: var(--pastel-mint);
+            border: 1px solid var(--dark-mint);
+        }
+
+        .story-meta-box.grammar {
+            background-color: var(--light-lavender);
+            border: 1px solid var(--dark-lavender);
+        }
+
+        /* Search Results Overlay */
+        .search-results-box {
+            display: none;
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: 15px;
+            margin: 15px;
+            border: 2px solid var(--dark-pink);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .search-results-box.active {
+            display: block;
+        }
+
+        /* Sticky bottom action menu (looks like native mobile tab bar) */
+        .bottom-action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--primary-pink);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 0.7rem;
+            cursor: pointer;
+            gap: 3px;
+        }
+
+        .tab-btn.active {
+            color: var(--dark-pink);
+            font-weight: 700;
+        }
+
+        .tab-btn span {
+            font-size: 1.3rem;
+        }
+        
+        .btn-action-mobile {
+            background: var(--dark-pink);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-family: 'Vazirmatn', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(255, 141, 161, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Mobile Header -->
+    <header class="mobile-header">
+        <div class="header-title-row">
+            <h1><span>🌸</span> آلمانی برای بقا (موبایل)</h1>
+            <span style="font-size: 0.8rem; background: var(--primary-pink); color: var(--dark-text); padding: 2px 8px; border-radius: 12px; font-weight: 700;">دخترانه و کاربردی</span>
+        </div>
+        <!-- Live Vocab Search -->
+        <div class="search-box">
+            <input type="text" id="vocabSearch" placeholder="جستجوی سریع کلمات (مثلا Koffer یا چمدان)..." onkeyup="searchVocab()">
+        </div>
+    </header>
+
+    <!-- Search Results View -->
+    <section class="search-results-box" id="searchResultsBox">
+        <h3 style="font-size: 1rem; color: var(--dark-pink); margin-bottom: 10px;">🔍 نتایج جستجو واژگان</h3>
+        <table class="vocab-table">
+            <tbody id="searchResultsBody">
+                <!-- Filled dynamically -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ==================== HOME VIEW ==================== -->
+    <section class="view active" id="home-view">
+        <div class="intro-card">
+            <h2>سلام دختر قوی و باهوش! 🎒✨</h2>
+            <p>آماده سفر به کارلسروهه هستی؟ این نسخه تماماً بهینه‌شده برای گوشی شماست. با کلیک روی هر درس، وارد دنیای مکالمات کوچه بازاری آلمانی شو!</p>
+            <button class="btn-action-mobile" id="installBtn" style="display: none; background: #9C8EB9; box-shadow: none;">📲 نصب این برنامه روی گوشی شما</button>
+        </div>
+
+        <div class="lessons-grid">
+            
+            <!-- L1 -->
+            <div class="lesson-btn-card" onclick="openLesson(1)">
+                <div class="lesson-btn-emoji">✈️</div>
+                <div class="lesson-btn-info">
+                    <span>درس اول</span>
+                    <h3>رسیدن به فرودگاه فرانکفورت (Ankunft)</h3>
+                </div>
+            </div>
+
+            <!-- L2 -->
+            <div class="lesson-btn-card" onclick="openLesson(2)">
+                <div class="lesson-btn-emoji">🚄</div>
+                <div class="lesson-btn-info">
+                    <span>درس دوم</span>
+                    <h3>سفر با قطار و راه‌آهن (Unterwegs)</h3>
+                </div>
+            </div>
+
+            <!-- L3 -->
+            <div class="lesson-btn-card" onclick="openLesson(3)">
+                <div class="lesson-btn-emoji">🗺️</div>
+                <div class="lesson-btn-info">
+                    <span>درس سوم</span>
+                    <h3>مسیریابی شهری در کارلسروهه (Orientierung)</h3>
+                </div>
+            </div>
+
+            <!-- L4 -->
+            <div class="lesson-btn-card" onclick="openLesson(4)">
+                <div class="lesson-btn-emoji">🏢</div>
+                <div class="lesson-btn-info">
+                    <span>درس چهارم</span>
+                    <h3>سروکله زدن با ادارات آلمان (Behörden)</h3>
+                </div>
+            </div>
+
+            <!-- L5 -->
+            <div class="lesson-btn-card" onclick="openLesson(5)">
+                <div class="lesson-btn-emoji">🎓</div>
+                <div class="lesson-btn-info">
+                    <span>درس پنجم</span>
+                    <h3>زندگی دانشجویی در دانشگاه KIT (Uni)</h3>
+                </div>
+            </div>
+
+            <!-- L6 -->
+            <div class="lesson-btn-card" onclick="openLesson(6)">
+                <div class="lesson-btn-emoji">🛒</div>
+                <div class="lesson-btn-info">
+                    <span>درس ششم</span>
+                    <h3>خرید سوپرمارکت و سیم‌کارت (Einkaufen)</h3>
+                </div>
+            </div>
+
+            <!-- L7 -->
+            <div class="lesson-btn-card" onclick="openLesson(7)">
+                <div class="lesson-btn-emoji">💬</div>
+                <div class="lesson-btn-info">
+                    <span>درس هفتم</span>
+                    <h3>مکالمات دوستانه و برنامه‌نویسی (Smalltalk)</h3>
+                </div>
+            </div>
+
+            <!-- L8 -->
+            <div class="lesson-btn-card" onclick="openLesson(8)">
+                <div class="lesson-btn-emoji">🚨</div>
+                <div class="lesson-btn-info">
+                    <span>درس هشتم</span>
+                    <h3>پزشک، داروخانه و موارد اضطراری (Notfälle)</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== LESSON DETAILS VIEW ==================== -->
+    <section class="view" id="lesson-view">
+        <div class="lesson-view-header">
+            <button class="back-btn" onclick="backToHome()">← بازگشت به درس‌ها</button>
+            <span id="active-lesson-badge" style="background: var(--dark-pink); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;">درس ۱</span>
+        </div>
+
+        <h2 id="active-lesson-title" style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 20px;">عنوان درس</h2>
+
+        <!-- Active Lesson Content Container -->
+        <div id="active-lesson-content">
+            <!-- Dynamically Loaded from JS based on chosen lesson -->
+        </div>
+    </section>
+
+    <!-- Sticky Mobile Tab Navigation Bar -->
+    <nav class="bottom-action-bar">
+        <button class="tab-btn active" id="tab-home" onclick="backToHome()">
+            <span>🏠</span>
+            خانه
+        </button>
+        <button class="tab-btn" id="tab-print" onclick="window.location.href='index.html?mode=print'">
+            <span>📄</span>
+            نسخه پی‌دی‌اف/چاپ
+        </button>
+    </nav>
+
+    <!-- Content DB for JS Rendering -->
+    <script>
+        // Data for all lessons to render dynamically in mobile layouts
+        const lessonsData = {
+            1: {
+                title: "Lektion 1: Ankunft am Flughafen ✈️",
+                subtitle: "فرودگاه فرانکفورت: تحویل بار، پاسپورت و خروجی‌ها",
+                objectives: ["پیدا کردن چمدان‌ها و حل مشکل بار گم‌شده", "پاسخ به سوالات پلیس مرزی در پاسپورت کنترل", "پیدا کردن خروجی‌ها و قطار فرودگاه"],
+                hasGenderGuide: true, // Only Lesson 1 gets the identity guide card!
+                vocab: [
+                    { g: "das Gepäck", f: "داس گِپِک", e: "das ge-pek", m: "بار و بنه، چمدان‌ها" },
+                    { g: "das Gepäckband", f: "داس گِپِک‌باند", e: "das ge-pek-band", m: "نوار نقاله حمل بار" },
+                    { g: "der Ausgang", f: "دِر آوس‌گانگ", e: "der aus-gang", m: "خروجی" },
+                    { g: "die Grenzkontrolle", f: "دی گرِنتس‌کنترلِه", e: "dee grents-kon-trol-e", m: "کنترل مرزی (پاسپورت)" },
+                    { g: "der Reisepass", f: "دِر رایزِپاس", e: "der rai-ze-pas", m: "پاسپورت سفر" },
+                    { g: "das Visum", f: "داس ویزوم", e: "das vee-zum", m: "روادید، ویزا" },
+                    { g: "der Zoll", f: "دِر تسول", e: "der tsol", m: "گمرک" },
+                    { g: "die Fundstelle", f: "دی فوندشْتِله", e: "dee fund-shtel-e", m: "بخش اشیای پیدا شده (Lost & Found)" },
+                    { g: "der Koffer", f: "دِر کوفِر", e: "der kof-er", m: "چمدان بزرگ" },
+                    { g: "das Handgepäck", f: "داس هاندگِپِک", e: "das hand-ge-pek", m: "بار دستی (کابین)" },
+                    { g: "die Verspätung", f: "دی فِرشپِتونگ", e: "dee fer-shpay-tung", m: "تاخیر" },
+                    { g: "der Schalter", f: "دِر شالتِر", e: "der shal-ter", m: "باجه، پیشخوان اطلاعات" },
+                    { g: "der Bahnhof", f: "دِر بانهوف", e: "der bahn-hof", m: "ایستگاه قطار" },
+                    { g: "die Aufenthaltserlaubnis", f: "دی آوف‌انتهالتس‌اِرلابنیس", e: "dee auf-ent-halts-er-laub-nis", m: "اجازه اقامت" },
+                    { g: "verloren", f: "فِرلورِن", e: "fer-lo-ren", m: "گم شده" },
+                    { g: "beschädigt", f: "بِشِدیگت", e: "be-shay-digt", m: "خراب شده، آسیب دیده" }
+                ],
+                grammar: "در زبان آلمانی، بعضی افعال یک پیشوند دارند که در جمله ساده حال ساده، کنده میشه و میره آخر جمله قرار می‌گیره! مثلاً فعل <strong>abholen</strong> (تحویل گرفتن): <div class='grammar-highlight'>Ich hole mein Gepäck ab.</div>",
+                phrases: [
+                    { g: "Wo ist <span class='changeable'>das Gepäckband 4</span>, bitte?", e: "Vo ist das ge-pek-band feer, bi-te?", m: "ببخشید، <span class='changeable'>نوار نقاله بار شماره ۴</span> کجاست؟" },
+                    { g: "Wo ist <span class='changeable'>der Ausgang</span>, bitte?", e: "Vo ist der aus-gang, bi-te?", m: "ببخشید، <span class='changeable'>خروجی</span> کجاست؟" },
+                    { g: "Ich suche <span class='changeable'>meine Koffer</span>.", e: "Ikh zu-khe mai-ne kof-er.", m: "من دنبال <span class='changeable'>چمدان‌هایم</span> می‌گردم." },
+                    { g: "Mein Koffer ist <span class='changeable'>verloren gegangen</span>.", e: "Mein kof-er ist fer-lo-ren ge-gang-en.", m: "چمدان من <span class='changeable'>گم شده است</span>." },
+                    { g: "Ich habe ein <span class='changeable'>Studentenvisum</span>.", e: "Ikh ha-be ain shtu-den-ten-vee-zum.", m: "من یک <span class='changeable'>ویزای دانشجویی</span> دارم." }
+                ],
+                stories: [
+                    {
+                        title: "چمدان من کجاست؟",
+                        chat: [
+                            { sender: "sarah", g: "Entschuldigung, mein Koffer ist nicht auf dem Gepäckband. Was soll ich jetzt tun?", e: "Ent-shul-dee-gung, mein kof-er ist nikht auf deym ge-pek-band. Vas zol ikh yetst tun?", f: "ببخشید، چمدان من روی نوار نقاله بار نیست. الان باید چکار کنم؟" },
+                            { sender: "other", g: "Keine Sorge. Gehen Sie bitte zum Schalter von Lost and Found dort drüben. Haben Sie Ihren Gepäckabschnitt?", e: "Kai-ne zor-ge. Gey-hen zee bi-te tsum shal-ter fon lost and found dort drue-ben. Ha-ben zee ee-ren ge-pek-ap-shnit?", f: "نگران نباشید. لطفاً برید به باجه اشیای گم‌شده (Lost and Found) اون طرف. رسید بارکد چمدانتون رو همراه دارید؟" },
+                            { sender: "sarah", g: "Ja, hier ist der Aufkleber. Mein Koffer ist pink mit einem Einhorn-Sticker.", e: "Ya, heer ist der auf-kley-ber. Mein kof-er ist pink mit ai-nem ain-horn-shtik-er.", f: "بله، برچسبش اینجاست. چمدان من صورتیه و یک استیکر تک‌شاخ روش چسبیده." }
+                        ],
+                        v: "Gepäckabschnitt: رسید بار | Aufkleber: برچسب",
+                        g: "فعل کمکی sollen برای کسب تکلیف استفاده می‌شود (Was soll ich tun?)."
+                    },
+                    {
+                        title: "کنترل پاسپورت و مرز",
+                        chat: [
+                            { sender: "other", g: "Guten Tag. Ihren Pass und Ihr Visum, bitte. Was ist der Grund für Ihre Reise?", e: "Gu-ten tahg. Ee-ren pas und eer vee-zum, bi-te. Vas ist der grund fuer ee-re rai-ze?", f: "روز بخیر. پاسپورت و ویزاتون رو لطف کنید. علت سفرتون چیه؟" },
+                            { sender: "sarah", g: "Guten Tag. Hier sind sie. Ich werde in Karlsruhe Informatik studieren. Ich habe auch meine Zulassung dabei.", e: "Gu-ten tahg. Heer zint zee. Ikh ver-de in karls-ru-he in-for-mah-tik shtu-dee-ren. Ikh ha-be aokh mai-ne tsu-las-ung da-bai.", f: "روز بخیر. بفرمایید. من قرار هست در کارلسروهه مهندسی کامپیوتر بخونم. پذیرش دانشگاه رو هم دارم." },
+                            { sender: "other", g: "Alles klar. Willkommen in Deutschland und viel Erfolg beim Studium!", e: "Al-es klahr. Vil-ko-men in doitsh-land und feel er-folg baim shtu-dee-um!", f: "بسیار خب. به آلمان خوش آمدید و موفق باشید در تحصیلتون!" }
+                        ],
+                        v: "der Grund: دلیل | die Zulassung: پذیرش تحصیلی",
+                        g: "زمان آینده با استفاده از فعل werden و مصدر فعل اصلی در پایان جمله ساخته می‌شود."
+                    },
+                    {
+                        title: "گم کردن ایستگاه قطار",
+                        chat: [
+                            { sender: "sarah", g: "Entschuldigung, ich bin total verloren. Wo finde ich den Fernbahnhof? Ich muss nach Karlsruhe fahren.", e: "Ent-shul-dee-gung, ikh bin to-tahl fer-lo-ren. Vo fin-de ikh den fern-bahn-hof? Ikh mus nakh karls-ru-he fah-ren.", f: "ببخشید، من کاملاً گم شدم. ایستگاه قطارهای مسافت دور رو کجا پیدا کنم؟ باید برم کارلسروهه." },
+                            { sender: "other", g: "Kein Stress! Folge einfach den grünen Schildern mit dem 'S' oder den Bahnsymbolen. Du musst eine Etage tiefer gehen.", e: "Kain shtres! Fol-ge ain-fakh den grue-nen shil-dern mit deym 'es' o-der den bahn-zym-boh-len. Du must ai-ne e-tah-ge tee-fer gey-hen.", f: "اصلاً استرس نداشته باش! فقط تابلوهای سبز با علامت S یا نمادهای قطار رو دنبال کن. باید یک طبقه بری پایین‌تر." }
+                        ],
+                        v: "Kein Stress: استرس نگیر | eine Etage tiefer: یک طبقه پایین‌تر",
+                        g: "امری صمیمانه برای du با حذف پسوند فعل ساخته می‌شود (Folge!)."
+                    }
+                ]
+            },
+            2: {
+                title: "Lektion 2: Unterwegs mit der Bahn 🚄",
+                subtitle: "خرید بلیط، سکوها و تاخیرهای معروف راه‌آهن آلمان (DB)",
+                objectives: ["خرید بلیط از دستگاه‌های خودکار ایستگاه", "فهم اصطلاحات تاخیر و کنسلی قطارها", "نحوه سوار شدن و ترانزیت بین راه‌ها"],
+                vocab: [
+                    { g: "die Fahrkarte", f: "دی فارکارته", e: "dee fahr-kar-te", m: "بلیط سفر" },
+                    { g: "der Fahrkartenautomat", f: "دِر فارکارتن‌اوتومات", e: "der fahr-kar-ten-au-to-mat", m: "دستگاه خودکار خرید بلیط" },
+                    { g: "das Gleis", f: "داس گلایس", e: "das glaise", m: "سکو، ریل ایستگاه" },
+                    { g: "der Anschluss", f: "دِر آن‌شلوس", e: "der an-shlus", m: "اتصال، قطار ترانزیت بعدی" },
+                    { g: "umsteigen", f: "اوم‌اشنایگن", e: "um-shtai-gen", m: "عوض کردن قطار" },
+                    { g: "aussteigen", f: "آوس‌اشنایگن", e: "aus-shtai-gen", m: "پیاده شدن" },
+                    { g: "einsteigen", f: "آین‌اشنایگن", e: "ein-shtai-gen", m: "سوار شدن" },
+                    { g: "die Verspätung", f: "دی فِرشپِتونگ", e: "dee fer-shpay-tung", m: "تاخیر" }
+                ],
+                grammar: "افعال کمکی (Modalverben) مثل <strong>müssen</strong> (باید) در جایگاه دوم جمله می‌آیند و فعل اصلی را به صورت مصدر به انتهای جمله می‌فرستند: <div class='grammar-highlight'>Ich <strong>muss</strong> in Mannheim <strong>umsteigen</strong>.</div>",
+                phrases: [
+                    { g: "Wann fährt der nächste Zug nach <span class='changeable'>Karlsruhe</span>?", e: "Van fairt der nekh-ste tsug nakh Karls-ru-he?", m: "قطار بعدی به مقصد <span class='changeable'>کارلسروهه</span> کی حرکت می‌کند؟" },
+                    { g: "Von welchem Gleis fährt der Zug nach <span class='changeable'>Stuttgart</span>?", e: "Fon vel-khem glaise fairt der tsug nakh Shtut-gart?", m: "قطار از کدام سکو به مقصد <span class='changeable'>اشتوتگارت</span> حرکت می‌کند؟" }
+                ],
+                stories: [
+                    {
+                        title: "خرید بلیط از دستگاه",
+                        chat: [
+                            { sender: "sarah", g: "Entschuldigung, wie funktioniert dieser Automat? Ich möchte ein Ticket nach Karlsruhe kaufen.", e: "Ent-shul-dee-gung, vee funk-tsyo-neert dee-zer au-to-mat? Ikh moekh-te ain tik-et nakh Karls-ru-he kau-fen.", f: "ببخشید، این دستگاه چطور کار می‌کنه؟ می‌خوام یه بلیط به کارلسروهه بخرم." },
+                            { sender: "other", g: "Hallo! Hol dir am besten das 'Quer-durchs-Land-Ticket' یا با قطارهای محلی برو. با قطار سریع‌السیر ICE خیلی گرون درمیاد.", e: "Ha-loh! Hol deer am bes-ten das 'Kver-durkhs-land-tik-et'... Mit deym ICE ist es zoo-per toi-er.", f: "سلام! بهتره بلیط سراسری آلمان رو بگیری یا با قطارهای محلی بری. با قطارهای ICE خیلی گرون میشه." }
+                        ],
+                        v: "im Voraus: از قبل | Nahverkehr: حمل و نقل محلی",
+                        g: "استفاده از جملات شرطی با wenn که فعل را به ته جمله می‌فرستد."
+                    }
+                ]
+            },
+            3: {
+                title: "Lektion 3: Orientierung in der Stadt 🗺️",
+                subtitle: "آدرس‌پرسی، جهت‌ها و وسایل نقلیه شهری کارلسروهه",
+                objectives: ["آدرس پرسیدن به زبان روزمره", "استفاده از ترامواهای زیرزمینی کارلسروهه", "کرایه دوچرخه‌های اشتراکی"],
+                vocab: [
+                    { g: "links", f: "لینکس", e: "links", m: "چپ" },
+                    { g: "rechts", f: "رِشتس", e: "rekhts", m: "راست" },
+                    { g: "geradeaus", f: "گِرادِه‌آوس", e: "ge-rah-de-aus", m: "مستقیم" },
+                    { g: "die Haltestelle", f: "دی هالتِ‌اشتِله", e: "dee hal-te-shtel-e", m: "ایستگاه اتوبوس/تراموا" }
+                ],
+                grammar: "حرف اضافه <strong>zu</strong> برای مقاصد بیرونی همیشه حالت داتیو (Dativ) می‌گیرد و به صورت <strong>zum</strong> (برای اسم مذکر/خنثی) یا <strong>zur</strong> (برای اسم مونث) تبدیل می‌شود.",
+                phrases: [
+                    { g: "Entschuldigung, wie komme ich <span class='changeable'>zum Schloss</span>?", e: "Ent-shul-dee-gung, vee kom-e ikh tsum shlos?", m: "ببخشید، چطور می‌توانم به <span class='changeable'>قصر</span> بروم؟" }
+                ],
+                stories: [
+                    {
+                        title: "گم شدن در خیابان بادبزنی شکل",
+                        chat: [
+                            { sender: "sarah", g: "Entschuldigung! Ich suche das Schloss. Mein Google Maps hat kein Internet mehr.", e: "Ent-shul-dee-gung! Ikh zu-khe das shlos. Mein gu-gel meps hat kain in-ter-net mehr.", f: "ببخشید! من دنبال قصر می‌گردم. گوگل مپم اینترنت نداره." },
+                            { sender: "other", g: "Kein Problem. Das Schloss ist das Zentrum von Karlsruhe. Geh einfach diese Straße geradeaus.", e: "Kain prob-leym. Das shlos ist das tsen-trum fon Karls-ru-he. Gey ain-fakh dee-ze shtrah-se ge-rah-de-aus.", f: "مشکلی نیست. قصر مرکز کارلسروهه است. فقط این خیابان را مستقیم برو." }
+                        ],
+                        v: "das Zentrum: مرکز | geradeaus: مستقیم",
+                        g: "bis zu به عنوان حرف اضافه داتیو به کار می‌رود."
+                    }
+                ]
+            },
+            4: {
+                title: "Lektion 4: Behörden & Bürokratie 🏢",
+                subtitle: "ثبت آدرس در شهرداری و نوبت ملاقات اداره مهاجرت",
+                objectives: ["ثبت آدرس مسکونی (Anmeldung)", "فهم واژگان کارت اقامت دانشجویی", "پر کردن فرم‌های سخت اداری"],
+                vocab: [
+                    { g: "die Anmeldung", f: "دی آن‌مِلدونگ", e: "dee an-mel-dung", m: "ثبت آدرس مسکونی" },
+                    { g: "die Meldebestätigung", f: "دی مِلدِه‌بِشتِتیگونگ", e: "dee mel-de-be-shtay-ti-gung", m: "برگه رسمی تایید آدرس خانه" },
+                    { g: "der Mietvertrag", f: "دِر میت‌فِرتراگ", e: "der meet-fer-trahg", m: "اجاره‌نامه خانه" },
+                    { g: "der Termin", f: "دِر تِرمین", e: "der ter-meen", m: "وقت ملاقات، نوبت اداری" }
+                ],
+                grammar: "در صحبت با کارمندان از حالت امری محترمانه (Formaler Imperativ) استفاده کنید: فعل در اول جمله می‌آید و به دنبال آن ضمیر محترمانه <strong>Sie</strong> می‌آید: <div class='grammar-highlight'><strong>Unterschreiben Sie</strong> bitte hier.</div>",
+                phrases: [
+                    { g: "Ich möchte <span class='changeable'>meine Wohnung anmelden</span>.", e: "Ikh moekh-te mai-ne voh-nung an-mel-den.", m: "می‌خواهم <span class='changeable'>آدرس آپارتمانم را ثبت کنم</span>." }
+                ],
+                stories: [
+                    {
+                        title: "ثبت آدرس در شهرداری",
+                        chat: [
+                            { sender: "sarah", g: "Guten Tag. Ich möchte meine Wohnung anmelden. Hier ist mein Reisepass.", e: "Gu-ten tahg. Ikh moekh-te mai-ne voh-nung an-mel-den. Heer ist mein rai-ze-pas.", f: "روز بخیر. می‌خوام آدرس خونم رو ثبت کنم. این پاسپورتمه." },
+                            { sender: "other", g: "Guten Tag. Haben Sie auch die Vermieterbescheinigung und den Mietvertrag dabei?", e: "Gu-ten tahg. Ha-ben zee aokh dee fer-mee-ter-be-shai-ni-gung und den meet-fer-trahg da-bai?", f: "روز بخیر. تاییدیه صاحب‌خانه و اجاره‌نامه رو هم همراه دارید؟" }
+                        ],
+                        v: "der Reisepass: پاسپورت | Beamtin: کارمند زن",
+                        g: "قیدها در زبان آلمانی مانند صفت‌ها بدون پسوند صرفی به کار می‌روند."
+                    }
+                ]
+            },
+            5: {
+                title: "Lektion 5: Uni & Campus am KIT 🎓",
+                subtitle: "بخش کامپیوتر، سلف غذاخوری و ثبت‌نام امتحانات",
+                objectives: ["پیدا کردن ساختمان‌های مهندسی کامپیوتر", "شارژ کارت دانشجویی برای ناهار منسا", "ارتباط با انجمن‌های دانشجویی"],
+                vocab: [
+                    { g: "die Informatik", f: "دی اینفورماتیک", e: "dee in-for-mah-tik", m: "مهندسی نرم‌افزار، کامپیوتر" },
+                    { g: "die Mensa", f: "دی مِتسا", e: "dee men-za", m: "سلف سرویس دانشجویی" },
+                    { g: "der Studentenausweis", f: "دِر اشتودنتن‌اوس‌وایس", e: "der shtoo-den-ten-aus-vais", m: "کارت دانشجویی" },
+                    { g: "die Klausur", f: "دی کلاوزور", e: "dee klau-zuur", m: "امتحان کتبی پایان‌ترم" }
+                ],
+                grammar: "حروف اضافه زمانی: برای ساعت از <strong>um</strong>، برای روز از <strong>am</strong> و برای فصل/ترم از <strong>im</strong> استفاده می‌شود: <div class='grammar-highlight'>Die Vorlesung ist <strong>am</strong> Montag <strong>um</strong> 8 Uhr.</div>",
+                phrases: [
+                    { g: "Wo ist das Gebäude für <span class='changeable'>Technische Informatik</span>?", e: "Vo ist das ge-boy-de fuer Tekh-ni-she In-for-mah-tik?", m: "دانشکده <span class='changeable'>مهندسی سخت‌افزار/کامپیوتر</span> کجاست؟" }
+                ],
+                stories: [
+                    {
+                        title: "اولین روز در دانشگاه",
+                        chat: [
+                            { sender: "sarah", g: "Hallo! Ich bin neu hier. Kannst du mir sagen, wo das Informatik-Gebäude ist?", e: "Ha-loh! Ikh bin noy heer. Kanst du mir zah-gen, vo das In-for-mah-tik-ge-boy-de ist?", f: "سلام! من اینجا جدیدم. می‌تونی بهم بگی ساختمان کامپیوتر کجاست؟" },
+                            { sender: "other", g: "Hi! Geh hier über den Forumsplatz, dann siehst du links ein großes rotes Gebäude. Das ist das Rechenzentrum.", e: "Hi! Gey heer ue-ber den Fo-rums-plats, dan zeest du links... Das ist das Rechenzentrum.", f: "سلام! از میدان فوروم رد شو، سمت چپ یه ساختمان قرمز بزرگ می‌بینی. اون مرکز پردازشه." }
+                        ],
+                        v: "neu hier: تازه‌وارد | Rechenzentrum: مرکز محاسبات",
+                        g: "حرف اضافه über با مفعول آکوزاتیو برای جابجایی استفاده می‌شود."
+                    }
+                ]
+            },
+            6: {
+                title: "Lektion 6: Einkaufen & SIM-Karte 🛒",
+                subtitle: "سوپرمارکت، سیستم بازیافت بطری (Pfand) و فعال‌سازی سیم‌کارت",
+                objectives: ["خرید اقتصادی از سوپرمارکت‌های آلمان", "کار با دستگاه خودکار بازیافت بطری", "احراز هویت و فعال‌سازی سیم‌کارت اعتباری"],
+                vocab: [
+                    { g: "die Kasse", f: "دی کاسه", e: "dee kas-e", m: "صندوق پرداخت" },
+                    { g: "mit Karte bezahlen", f: "میت کارته بِتسالن", e: "mit kar-te be-tsah-len", m: "پرداخت با کارت" },
+                    { g: "die Pfandflasche", f: "دی پْفاندفِلاشه", e: "dee pfand-flash-e", m: "بطری بازیافت دارای ودیعه" },
+                    { g: "die SIM-Karte", f: "دی سیم‌کارته", e: "dee sim-kar-te", m: "سیم‌کارت تلفن همراه" }
+                ],
+                grammar: "حالت مفعول مستقیم (Akkusativ) بعد از افعالی مثل <strong>brauchen</strong> یا <strong>kaufen</strong> می‌آید. فقط آرتیکل مذکر تغییر می‌کند: <div class='grammar-highlight'>Ich brauche <strong>einen</strong> Einkaufswagen.</div>",
+                phrases: [
+                    { g: "Zahlen Sie <span class='changeable'>bar oder mit Karte</span>?", e: "Tsah-len zee bahr o-der mit kar-te?", m: "نقدی پرداخت می‌کنید یا با <span class='changeable'>کارت</span>؟" }
+                ],
+                stories: [
+                    {
+                        title: "صندوق سوپرمارکت و سرعت بالا",
+                        chat: [
+                            { sender: "other", g: "Hallo. Brauchen Sie einen Beleg?", e: "Ha-loh. Braokh-en zee ai-nen be-leyg?", f: "سلام. رسید خرید می‌خواید؟" },
+                            { sender: "sarah", g: "Hallo. Ja, bitte. Kann ich kontaktlos mit Karte bezahlen?", e: "Ha-loh. Ya, bi-te. Kan ikh kon-takt-lohs mit kar-te be-tsah-len?", f: "سلام. بله لطفاً. می‌تونم بدون تماس با کارت پرداخت کنم؟" }
+                        ],
+                        v: "der Beleg: رسید | kontaktlos: بدون تماس",
+                        g: "ضمیرهای اشاره در ابتدای جمله برای تاکید روی مفعول مستقیم قرار می‌گیرند."
+                    }
+                ]
+            },
+            7: {
+                title: "Lektion 7: Smalltalk & Hobbys 💬",
+                subtitle: "دوست‌یابی، برنامه‌نویسی، ورزش کاراته و سفالگری",
+                objectives: ["مکالمات صمیمانه و روزمره جوانان", "صحبت از برنامه‌نویسی و کدهای React", "توصیف سرگرمی‌ها و ورزش کاراته"],
+                vocab: [
+                    { g: "Karate machen", f: "کاراته ماخن", e: "ka-rah-te makh-en", m: "ورزش کاراته انجام دادن" },
+                    { g: "töpfern", f: "توپفرن", e: "toep-fern", m: "سفالگری کردن" },
+                    { g: "programmieren", f: "پروگرامیرن", e: "pro-gra-mee-ren", m: "کدنویسی، برنامه‌نویسی" },
+                    { g: "echt? / krass", f: "اِشت؟ / کراس", e: "ekht? / kras", m: "واقعاً؟ / برگ‌ریزون، خفن" }
+                ],
+                grammar: "برای توصیف علایق از قید <strong>gern</strong> بعد از فعل استفاده می‌کنیم. در جملات علّی با <strong>weil</strong> (چون)، فعل اصلی به انتهای جمله منتقل می‌شود: <div class='grammar-highlight'>Ich töpfe gerne, <strong>weil</strong> es mich <strong>entspannt</strong>.</div>",
+                phrases: [
+                    { g: "Ich <span class='changeable'>programmiere gerne</span>.", e: "Ikh pro-gra-mee-re gehr-ne.", m: "من دوست دارم <span class='changeable'>برنامه‌نویسی کنم</span>." }
+                ],
+                stories: [
+                    {
+                        title: "ملاقات برنامه‌نویسان در میتاپ",
+                        chat: [
+                            { sender: "sarah", g: "Hey! Entwickelst du auch in React und JavaScript? Ich suche Mitstreiter für mein kleines Web-Projekt.", e: "Hee! Ent-vik-elst du aokh in React...?", f: "سلام! تو هم با ری‌اکت و جاوااسکریپت کار می‌کنی؟ دنبال هم‌تیمی برای پروژه وب کوچیکم هستم." },
+                            { sender: "other", g: "Servus! Ja, klar. Ich bin Frontend-Entwickler. Was codest du genau?", e: "Ser-vus! Ya, klahr. Ikh bin frontend-ent-vik-ler. Vas koh-dest du ge-nao?", f: "ارادت! آره حتماً. من برنامه‌نویس فرانت‌اند هستم. دقیقاً چی کد می‌زنی؟" }
+                        ],
+                        v: "Mitstreiter: همکار، هم‌رزم | JavaScript: جاوااسکریپت",
+                        g: "عبارت Lust haben به همراه حرف اضافه zu و مصدر فعل در پایان جمله می‌آید."
+                    }
+                ]
+            },
+            8: {
+                title: "Lektion 8: Notfälle & Gesundheit 🚨",
+                subtitle: "داروخانه، پزشک عمومی و گزارش وسایل گم‌شده",
+                objectives: ["خرید داروهای سرماخوردگی بدون نسخه", "نوبت پزشک سرپایی و گواهی استعلاجی", "مراجعه به دفتر اشیای گم‌شده (Fundbüro)"],
+                vocab: [
+                    { g: "die Apotheke", f: "دی آپوتکه", e: "dee a-po-thay-ke", m: "داروخانه" },
+                    { g: "die Schmerzen", f: "دی اِشمرتسن", e: "dee shmer-tsen", m: "دردها" },
+                    { g: "die Krankmeldung", f: "دی کرانک‌ملدونگ", e: "dee krank-mel-dung", m: "گواهی استراحت پزشکی" },
+                    { g: "das Fundbüro", f: "داس فوندبورو", e: "das fund-bue-ro", m: "دفتر اشیای گم‌شده شهرداری" }
+                ],
+                grammar: "برای درد در اعضای بدن از فعل جداشدنی <strong>wehtun</strong> استفاده می‌شود. برای اعضای مفرد <strong>tut weh</strong> و برای جمع <strong>tun weh</strong> به کار می‌رود: <div class='grammar-highlight'>Mein Kopf <strong>tut</strong> weh.</div>",
+                phrases: [
+                    { g: "Mein <span class='changeable'>Kopf</span> tut weh.", e: "Mein kopf tuut vey.", m: "<span class='changeable'>سر</span> من درد می‌کند." }
+                ],
+                stories: [
+                    {
+                        title: "مراجعه به داروخانه",
+                        chat: [
+                            { sender: "sarah", g: "Guten Tag. Ich habe starke Kopfschmerzen. Haben Sie ein Medikament gegen Erkältung?", e: "Gu-ten tahg. Ikh ha-be shtahr-ke kopf-shmer-tsen...?", f: "روز بخیر. سردرد خیلی شدیدی دارم. دارویی واسه سرماخوردگی دارید؟" },
+                            { sender: "other", g: "Guten Tag. Ja, wir haben Ibuprofen für die Schmerzen. Das ist rezeptfrei.", e: "Gu-ten tahg. Ya, veer ha-ben Ibuprofen... Das ist rezeptfrei.", f: "روز بخیر. بله، ایبوپروفن داریم برای تسکین درد. این دارو بدون نسخه فروخته میشه." }
+                        ],
+                        v: "rezeptfrei: بدون نیاز به نسخه | Gute Besserung: امیدوارم زود خوب شی",
+                        g: "حرف اضافه gegen همیشه با مفعول آکوزاتیو همراه می‌شود."
+                    }
+                ]
+            }
+        };
+
+        const vocabData = [];
+
+        // Compile all vocab into a single list for global mobile search
+        Object.keys(lessonsData).forEach(lNum => {
+            lessonsData[lNum].vocab.forEach(v => {
+                vocabData.push({
+                    german: v.g,
+                    pronFarsi: v.f,
+                    pronEng: v.e,
+                    meaning: v.m,
+                    lesson: lNum
+                });
+            });
+        });
+
+        // Initialize Home Page view logic
+        function openLesson(lessonNum) {
+            // Hide Home View
+            document.getElementById("home-view").classList.remove("active");
+            
+            // Show Lesson View
+            const lessonView = document.getElementById("lesson-view");
+            lessonView.classList.add("active");
+
+            // Update badge & title
+            document.getElementById("active-lesson-badge").innerText = `درس ${lessonNum}`;
+            const data = lessonsData[lessonNum];
+            document.getElementById("active-lesson-title").innerHTML = `${data.title} <br><span style="font-size:0.9rem; color:#888; font-weight:normal;">${data.subtitle}</span>`;
+
+            // Build dynamic content
+            let contentHTML = `
+                <!-- Objectives -->
+                <div class="section-box">
+                    <div class="section-header">
+                        <h3>🎯 اهداف آموزشی این درس</h3>
+                    </div>
+                    <ul style="list-style:none; margin-top:10px; font-size:0.9rem;">
+                        ${data.objectives.map(o => `<li style="margin-bottom:6px;">✨ ${o}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            // If Lesson 1, inject the Gender & Identity Guide Box!
+            if (data.hasGenderGuide) {
+                contentHTML += `
+                    <div class="section-box" style="border-right: 6px solid var(--dark-lavender); background-color: var(--light-lavender);">
+                        <div class="section-header" style="border-bottom-color: var(--dark-lavender);">
+                            <span style="font-size: 1.5rem;">🚺</span>
+                            <h3 style="color: var(--dark-lavender); font-size: 1.05rem;">راهنمای هویت و جنسیت در زبان آلمانی</h3>
+                        </div>
+                        <div class="grammar-box" style="background: white; border-right: none; padding: 12px; border-radius: 8px; font-size:0.85rem; margin-top:10px;">
+                            <p>در زبان آلمانی، مشاغل، نقش‌ها و کلمات توصیفی دارای جنسیت هستند. از آنجا که تو یک <strong>زن (Frau)</strong> هستی، به انتهای نقش خود پسوند <strong>-in</strong> اضافه می‌کنی:</p>
+                            
+                            <table class="gender-table-mobile" style="margin-top:10px; font-size:0.8rem;">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>دانشجو</strong></td>
+                                        <td>پسر: der Student</td>
+                                        <td style="color:var(--dark-pink); font-weight:bold;">دختر (شما): die Studentin</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>برنامه‌نویس</strong></td>
+                                        <td>پسر: der Entwickler</td>
+                                        <td style="color:var(--dark-pink); font-weight:bold;">دختر (شما): die Entwicklerin</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>دوست</strong></td>
+                                        <td>پسر: der Freund</td>
+                                        <td style="color:var(--dark-pink); font-weight:bold;">دختر (شما): die Freundin</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>هم‌دانشگاهی</strong></td>
+                                        <td>پسر: der Kommilitone</td>
+                                        <td style="color:var(--dark-pink); font-weight:bold;">دختر (شما): die Kommilitonin</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="margin-top:10px; font-size:0.75rem; color:#888;">* اگر یک پسر بخواهد این‌ها را بگوید، پسوند -in را حذف کرده و از آرتیکل der استفاده می‌کند.</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            // Vocabulary List (Optimized into Flex/Block Cards via table class overrides)
+            contentHTML += `
+                <details class="section-box" open>
+                    <summary>
+                        <div class="section-header">
+                            <h3>📚 واژگان کلیدی درس</h3>
+                        </div>
+                    </summary>
+                    <table class="vocab-table" style="margin-top:15px;">
+                        <tbody>
+                            ${data.vocab.map(v => `
+                                <tr>
+                                    <td class="col-german">${v.g}</td>
+                                    <td class="col-pron-farsi">${v.f}</td>
+                                    <td class="col-pron-eng">${v.e}</td>
+                                    <td class="col-meaning">${v.m}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </details>
+            `;
+
+            // Grammar Box
+            contentHTML += `
+                <details class="section-box" open>
+                    <summary>
+                        <div class="section-header">
+                            <h3>💡 گرامر کاربردی خیابانی</h3>
+                        </div>
+                    </summary>
+                    <div class="grammar-box">
+                        <p>${data.grammar}</p>
+                    </div>
+                </details>
+            `;
+
+            // Phrases Box
+            contentHTML += `
+                <details class="section-box" open>
+                    <summary>
+                        <div class="section-header">
+                            <h3>💬 جملات جادویی و فرمول‌ها</h3>
+                        </div>
+                    </summary>
+                    <div class="phrase-grid" style="margin-top:15px;">
+                        ${data.phrases.map(p => `
+                            <div class="phrase-card">
+                                <div class="phrase-german">${p.g}</div>
+                                <div class="phrase-pron-eng">${p.e}</div>
+                                <div class="phrase-meaning">${p.m}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </details>
+            `;
+
+            // Stories Section (WhatsApp style chat UI)
+            contentHTML += `
+                <details class="section-box" open>
+                    <summary>
+                        <div class="section-header">
+                            <h3>📖 مکالمات واقعی و کوتاه</h3>
+                        </div>
+                    </summary>
+                    <div class="story-container" style="margin-top:15px;">
+                        ${data.stories.map((s, idx) => `
+                            <div class="story-item">
+                                <span class="story-badge">دیالوگ ${idx+1}: ${s.title}</span>
+                                <div class="whatsapp-chat">
+                                    ${s.chat.map(c => `
+                                        <div class="chat-bubble ${c.sender === 'sarah' ? 'sarah' : 'other'}">
+                                            <span class="bubble-german">${c.g}</span>
+                                            <span class="bubble-pron">${c.e}</span>
+                                            <span class="bubble-farsi">${c.f}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div class="story-meta-grid">
+                                    <div class="story-meta-box vocab">
+                                        <strong>🔑 واژگان استخراج‌شده:</strong>
+                                        <p style="margin-top:5px; font-size:0.8rem;">${s.v}</p>
+                                    </div>
+                                    <div class="story-meta-box grammar">
+                                        <strong>⚙️ نکته گرامری داستان:</strong>
+                                        <p style="margin-top:5px; font-size:0.8rem;">${s.g}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </details>
+            `;
+
+            document.getElementById("active-lesson-content").innerHTML = contentHTML;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToHome() {
+            // Hide Lesson View
+            document.getElementById("lesson-view").classList.remove("active");
+            
+            // Show Home View
+            document.getElementById("home-view").classList.add("active");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Vocab Search implementation
+        function searchVocab() {
+            const query = document.getElementById("vocabSearch").value.toLowerCase().trim();
+            const resultsBox = document.getElementById("searchResultsBox");
+            const resultsBody = document.getElementById("searchResultsBody");
+
+            if (query.length < 2) {
+                resultsBox.classList.remove("active");
+                resultsBody.innerHTML = "";
+                return;
+            }
+
+            const filtered = vocabData.filter(item => 
+                item.german.toLowerCase().includes(query) || 
+                item.meaning.toLowerCase().includes(query) || 
+                item.pronFarsi.toLowerCase().includes(query)
+            );
+
+            resultsBody.innerHTML = "";
+
+            if (filtered.length === 0) {
+                resultsBody.innerHTML = `<tr><td style="text-align: center; color: #888; padding: 15px;">هیچ واژه‌ای یافت نشد. 🌸</td></tr>`;
+            } else {
+                filtered.forEach(item => {
+                    resultsBody.innerHTML += `
+                        <tr onclick="openLessonAndHighlight(${item.lesson})" style="cursor:pointer;">
+                            <td class="col-german">${item.german} <span style="font-size:0.75rem; float:left; background:var(--primary-pink); padding:2px 6px; border-radius:10px; color:var(--dark-pink); font-family:'Vazirmatn';">درس ${item.lesson}</span></td>
+                            <td class="col-pron-farsi">${item.pronFarsi}</td>
+                            <td class="col-pron-eng">${item.pronEng}</td>
+                            <td class="col-meaning">${item.meaning}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            resultsBox.classList.add("active");
+        }
+
+        function openLessonAndHighlight(lessonNum) {
+            // Close search box
+            document.getElementById("vocabSearch").value = "";
+            document.getElementById("searchResultsBox").classList.remove("active");
+            
+            // Open corresponding lesson
+            openLesson(lessonNum);
+        }
+
+        // PWA Install Prompt handling
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response to the install prompt: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.style.display = 'none';
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+        });
+
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker registered successfully!', reg.scope))
+                    .catch(err => console.error('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>
