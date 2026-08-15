@@ -506,6 +506,44 @@
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
 
+        .translator-btn {
+            background: var(--light-lavender);
+            border: 1px solid var(--accent-lavender);
+            color: var(--dark-lavender);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .translator-btn:hover {
+            background: var(--pastel-pink);
+            border-color: var(--primary-pink);
+            color: var(--dark-pink);
+            transform: translateY(-1px);
+        }
+
+        .translator-btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 8px rgba(255, 82, 82, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+        }
+
+        .pulsing {
+            animation: pulse-red 1.5s infinite;
+        }
+
         .col-pron-farsi {
             color: var(--dark-lavender);
             font-weight: 600;
@@ -1003,7 +1041,7 @@
         <!-- Translator Companion Card -->
         <section class="lesson-card" id="translator-card" style="display: none;">
             <div class="lesson-title-text">
-                <h2>🗣️ مترجم همراه هوشمند (دوطرفه)</h2>
+                <h2>💬✨ مترجم همراه هوشمند (دوطرفه)</h2>
                 <p>مترجم صوتی و متنی آلمانی به فارسی و بالعکس - ابزار کاربردی برای بقا در آلمان 🇩🇪🌸</p>
             </div>
             
@@ -1011,31 +1049,30 @@
                 <div class="translator-container" style="display: flex; flex-direction: column; gap: 20px; padding: 10px;">
                     
                     <!-- Language Selection & Switcher -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; background: var(--light-lavender); padding: 10px 20px; border-radius: 30px; border: 1px solid var(--accent-lavender);">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; background: var(--light-lavender); padding: 10px 20px; border-radius: 30px; border: 1px solid var(--accent-lavender);">
                         <strong id="label-source" style="color: var(--dark-pink); font-family: 'Vazirmatn'; font-size: 1rem;">🇩🇪 آلمانی</strong>
-                        <button onclick="swapTranslatorLanguages()" class="btn-action" style="font-size: 1.2rem; padding: 6px 12px; border-radius: 50%; min-width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">🔄</button>
+                        <button onclick="swapTranslatorLanguages()" class="translator-btn" style="padding: 6px; border-radius: 50%; min-width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 1rem; background: var(--white); border-color: var(--accent-lavender); box-shadow: var(--shadow-sm);">🔄</button>
                         <strong id="label-target" style="color: var(--dark-lavender); font-family: 'Vazirmatn'; font-size: 1rem;">🇮🇷 فارسی</strong>
                     </div>
 
                     <!-- Source Text Box -->
                     <div style="position: relative;">
                         <textarea id="translator-source-text" placeholder="متن آلمانی را بنویسید یا دکمه میکروفون را بزنید..." style="width: 100%; height: 120px; border-radius: 12px; border: 1px solid var(--accent-lavender); padding: 15px; font-family: inherit; font-size: 1.05rem; resize: none; background: var(--light-bg); color: var(--dark-text); box-sizing: border-box;"></textarea>
-                        <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: flex-end;">
-                            <span id="translator-mic-status" style="font-size: 0.85rem; color: var(--dark-pink); align-self: center; font-family: 'Vazirmatn';"></span>
-                            <button onclick="startTranslatorSpeech()" class="btn-action" style="background: var(--pastel-pink); border-color: var(--primary-pink); font-size: 1.1rem; padding: 8px 15px;" title="شروع ضبط صدا">🎤 خواندن صوتی</button>
-                            <button onclick="speakTranslatorSource()" class="btn-action" style="font-size: 1.1rem; padding: 8px 15px;" title="تلفظ متن وارد شده">🔊 پخش</button>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: center; width: 100%;">
+                            <button onclick="startTranslatorSpeech(this)" class="translator-btn" style="background: var(--pastel-pink); border-color: var(--primary-pink); font-weight: bold;" title="شروع ضبط صدا">🎤 خواندن صوتی</button>
+                            <button onclick="speakTranslatorSource()" class="translator-btn" title="تلفظ متن وارد شده">🔊 پخش تلفظ</button>
                         </div>
                     </div>
 
                     <!-- Translate Action Button -->
-                    <button onclick="executeTranslation()" class="btn-action" style="background: var(--dark-pink); color: white; border: none; font-size: 1.1rem; padding: 12px 25px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: bold; font-family: 'Vazirmatn'; transition: background-color 0.2s;">✨ ترجمه کن (Translate)</button>
+                    <button onclick="executeTranslation()" class="translator-btn" style="background: var(--dark-pink); color: white; border: none; font-size: 1.05rem; padding: 12px 25px; border-radius: 25px; cursor: pointer; width: 100%; font-weight: bold; font-family: 'Vazirmatn'; justify-content: center; box-shadow: var(--shadow-sm);">✨ ترجمه کن (Translate)</button>
 
                     <!-- Target Text Box -->
                     <div>
                         <div id="translator-target-text" style="width: 100%; min-height: 120px; border-radius: 12px; border: 1px solid var(--accent-lavender); padding: 15px; font-size: 1.05rem; background: var(--light-lavender); color: var(--dark-text); box-sizing: border-box; text-align: right; direction: rtl; white-space: pre-wrap;">ترجمه در اینجا نمایش داده می‌شود...</div>
-                        <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: flex-end;">
-                            <button onclick="copyTranslatorTarget()" class="btn-action" style="font-size: 1.1rem; padding: 8px 15px;" title="کپی کردن متن ترجمه">📋 کپی متن</button>
-                            <button onclick="speakTranslatorTarget()" class="btn-action" style="font-size: 1.1rem; padding: 8px 15px;" title="پخش صوتی ترجمه">🔊 پخش تلفظ</button>
+                        <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: center; width: 100%;">
+                            <button onclick="copyTranslatorTarget()" class="translator-btn" title="کپی کردن متن ترجمه">📋 کپی متن</button>
+                            <button onclick="speakTranslatorTarget()" class="translator-btn" title="پخش صوتی ترجمه">🔊 پخش تلفظ</button>
                         </div>
                     </div>
 
@@ -4450,9 +4487,9 @@
         targetText.innerText = "ترجمه در اینجا نمایش داده می‌شود...";
     }
 
-    function startTranslatorSpeech() {
+    function startTranslatorSpeech(btn) {
         const lang = translatorDirection === 'de-fa' ? 'de-DE' : 'fa-IR';
-        startSpeechRecognition(lang, 'translator-source-text', 'translator-mic-status');
+        toggleSpeechRecognition(btn, lang, 'translator-source-text');
     }
 
     function speakTranslatorSource() {
@@ -4509,45 +4546,63 @@
         alert("متن ترجمه کپی شد! 📋");
     }
 
-    // Web Speech API Voice Recognition (Speech-to-Text)
+    // Web Speech API Voice Recognition (Speech-to-Text) with Toggle & Real-time Typing
     let recognition;
-    function startSpeechRecognition(langCode, targetInputId, statusIndicatorId) {
+    let isRecording = false;
+
+    function toggleSpeechRecognition(btn, langCode, targetInputId) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
             alert("مرورگر شما از تایپ صوتی پشتیبانی نمی‌کند. لطفاً از گوگل کروم یا سافاری استفاده کنید.");
             return;
         }
         
-        if (recognition) {
-            recognition.stop();
+        if (isRecording) {
+            if (recognition) recognition.stop();
+            return;
         }
         
+        isRecording = true;
         recognition = new SpeechRecognition();
         recognition.lang = langCode;
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
+        recognition.interimResults = true; // Real-time typing!
+        recognition.continuous = true;     // Keep listening
         
-        const status = document.getElementById(statusIndicatorId);
-        if (status) {
-            status.innerText = "🎙️ در حال شنیدن...";
-        }
+        // Highlight button as active
+        btn.innerHTML = '🛑 توقف ضبط...';
+        btn.style.background = '#ff8a80';
+        btn.style.color = '#fff';
+        btn.style.borderColor = '#ff5252';
+        btn.classList.add('pulsing');
         
         recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
+            let transcript = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                transcript += event.results[i][0].transcript;
+            }
             document.getElementById(targetInputId).value = transcript;
         };
         
-        recognition.onspeechend = () => {
-            recognition.stop();
-            if (status) status.innerText = "";
+        recognition.onend = () => {
+            isRecording = false;
+            btn.innerHTML = '🎤 خواندن صوتی';
+            btn.style.background = '';
+            btn.style.color = '';
+            btn.style.borderColor = '';
+            btn.classList.remove('pulsing');
         };
         
         recognition.onerror = (event) => {
             console.error(event.error);
-            if (status) {
-                status.innerText = "⚠️ خطا در تشخیص صدا";
-                setTimeout(() => { status.innerText = ""; }, 2000);
-            }
+            isRecording = false;
+            btn.innerHTML = '⚠️ خطا در ضبط';
+            setTimeout(() => {
+                btn.innerHTML = '🎤 خواندن صوتی';
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.style.borderColor = '';
+                btn.classList.remove('pulsing');
+            }, 2000);
         };
         
         recognition.start();

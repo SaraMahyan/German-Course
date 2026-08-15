@@ -457,6 +457,48 @@
             background-color: rgba(255, 255, 255, 0.05) !important;
         }
 
+        .translator-btn {
+            background: var(--light-lavender);
+            border: 1px solid var(--accent-lavender);
+            color: var(--dark-lavender);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-family: 'Vazirmatn', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .translator-btn:hover {
+            background: var(--pastel-pink);
+            border-color: var(--primary-pink);
+            color: var(--dark-pink);
+            transform: translateY(-1px);
+        }
+
+        .translator-btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.4); }
+            70% { transform: scale(1.03); box-shadow: 0 0 0 8px rgba(255, 82, 82, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0); }
+        }
+
+        .pulsing {
+            animation: pulse-red 1.5s infinite;
+        }
+
+        body.dark-theme .dialogue-line:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
         .col-pron-farsi::before {
             content: "🗣️ تلفظ فارسی: ";
             font-size: 0.75rem;
@@ -1514,9 +1556,9 @@
             targetText.innerText = "ترجمه در اینجا نمایش داده می‌شود...";
         }
 
-        function startTranslatorSpeechMobile() {
+        function startTranslatorSpeechMobile(btn) {
             const lang = translatorDirectionMobile === 'de-fa' ? 'de-DE' : 'fa-IR';
-            startSpeechRecognition(lang, 'translator-source-text-mobile', 'translator-mic-status-mobile');
+            toggleSpeechRecognition(btn, lang, 'translator-source-text-mobile');
         }
 
         function speakTranslatorSourceMobile() {
@@ -1573,45 +1615,63 @@
             alert("متن ترجمه کپی شد! 📋");
         }
 
-        // Web Speech API Voice Recognition (Speech-to-Text)
+        // Web Speech API Voice Recognition (Speech-to-Text) with Toggle & Real-time Typing
         let recognition;
-        function startSpeechRecognition(langCode, targetInputId, statusIndicatorId) {
+        let isRecording = false;
+
+        function toggleSpeechRecognition(btn, langCode, targetInputId) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
                 alert("مرورگر شما از تایپ صوتی پشتیبانی نمی‌کند. لطفاً از گوگل کروم یا سافاری استفاده کنید.");
                 return;
             }
             
-            if (recognition) {
-                recognition.stop();
+            if (isRecording) {
+                if (recognition) recognition.stop();
+                return;
             }
             
+            isRecording = true;
             recognition = new SpeechRecognition();
             recognition.lang = langCode;
-            recognition.interimResults = false;
-            recognition.maxAlternatives = 1;
+            recognition.interimResults = true; // Real-time typing!
+            recognition.continuous = true;     // Keep listening
             
-            const status = document.getElementById(statusIndicatorId);
-            if (status) {
-                status.innerText = "🎙️ در حال شنیدن...";
-            }
+            // Highlight button as active
+            btn.innerHTML = '🛑 توقف ضبط...';
+            btn.style.background = '#ff8a80';
+            btn.style.color = '#fff';
+            btn.style.borderColor = '#ff5252';
+            btn.classList.add('pulsing');
             
             recognition.onresult = (event) => {
-                const transcript = event.results[0][0].transcript;
+                let transcript = "";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    transcript += event.results[i][0].transcript;
+                }
                 document.getElementById(targetInputId).value = transcript;
             };
             
-            recognition.onspeechend = () => {
-                recognition.stop();
-                if (status) status.innerText = "";
+            recognition.onend = () => {
+                isRecording = false;
+                btn.innerHTML = '🎤 خواندن صوتی';
+                btn.style.background = '';
+                btn.style.color = '';
+                btn.style.borderColor = '';
+                btn.classList.remove('pulsing');
             };
             
             recognition.onerror = (event) => {
                 console.error(event.error);
-                if (status) {
-                    status.innerText = "⚠️ خطا در تشخیص صدا";
-                    setTimeout(() => { status.innerText = ""; }, 2000);
-                }
+                isRecording = false;
+                btn.innerHTML = '⚠️ خطا در ضبط';
+                setTimeout(() => {
+                    btn.innerHTML = '🎤 خواندن صوتی';
+                    btn.style.background = '';
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                    btn.classList.remove('pulsing');
+                }, 2000);
             };
             
             recognition.start();
