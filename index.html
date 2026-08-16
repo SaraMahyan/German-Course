@@ -1092,9 +1092,24 @@
 
         <!-- AI Assistant Card -->
         <section class="lesson-card" id="ai-assistant-card" style="display: none;">
-            <div class="lesson-title-text">
+            <div class="lesson-title-text" style="position: relative;">
+                <button onclick="toggleGeminiSettingsDesktop()" style="background: none; border: none; font-size: 1.4rem; cursor: pointer; position: absolute; left: 0; top: 5px;" title="تنظیمات کلید هوش مصنوعی">⚙️ تنظیمات هوش مصنوعی</button>
                 <h2>🤖✨ دستیار هوشمند هوش مصنوعی (آفلاین و آنلاین)</h2>
                 <p>از دستیار آفلاین بپرسید تا درس‌ها را جستجو کند، یا آنلاین شوید و با هوش مصنوعی گپ بزنید! 🇩🇪🌸</p>
+            </div>
+
+            <!-- API Key Settings Panel -->
+            <div id="gemini-settings-panel-desktop" style="display: none; background: var(--light-bg); border: 1px solid var(--accent-lavender); border-radius: 12px; padding: 15px; margin: 15px 0 0 0;">
+                <h3 style="font-size: 1rem; color: var(--dark-pink); margin-bottom: 10px; font-family: 'Vazirmatn'; margin-top: 0;">🔑 تنظیمات کلید هوش مصنوعی (Google Gemini)</h3>
+                <p style="font-size: 0.85rem; color: var(--dark-text); line-height: 1.6; margin-bottom: 10px;">
+                    برای استفاده از بخش آنلاین، فیلترشکن خود را روشن کرده، وارد سایت 
+                    <a href="https://aistudio.google.com/apikey" target="_blank" style="color: var(--dark-pink); text-decoration: underline; font-weight: bold;">Google AI Studio</a> 
+                    شوید، دکمه <strong>Create API Key</strong> را بزنید و کلید رایگان خود را کپی کنید و در کادر زیر قرار دهید:
+                </p>
+                <div style="display: flex; gap: 10px;">
+                    <input type="password" id="gemini-key-input-desktop" placeholder="AIzaSy..." style="flex: 1; padding: 8px 15px; border-radius: 20px; border: 1px solid var(--accent-lavender); font-family: 'Quicksand', sans-serif; font-size: 0.95rem; outline: none;">
+                    <button onclick="saveGeminiKeyDesktop()" class="translator-btn" style="padding: 8px 20px; border-radius: 20px; background: var(--dark-pink); border-color: var(--dark-pink); color: white; font-size: 0.9rem; font-weight: bold;">ذخیره کلید 🌸</button>
+                </div>
             </div>
             
             <div class="section-box" style="margin-top: 20px;">
@@ -4875,19 +4890,51 @@
         return responseText;
     }
 
+    // Toggle Gemini Settings Panel (Desktop)
+    function toggleGeminiSettingsDesktop() {
+        const panel = document.getElementById("gemini-settings-panel-desktop");
+        const input = document.getElementById("gemini-key-input-desktop");
+        if (panel.style.display === "none") {
+            panel.style.display = "block";
+            input.value = localStorage.getItem("gemini_api_key") || "";
+        } else {
+            panel.style.display = "none";
+        }
+    }
+
+    function saveGeminiKeyDesktop() {
+        const key = document.getElementById("gemini-key-input-desktop").value.trim();
+        if (key) {
+            localStorage.setItem("gemini_api_key", key);
+            alert("کلید هوش مصنوعی با موفقیت ذخیره شد! 🌸🔑");
+            document.getElementById("gemini-settings-panel-desktop").style.display = "none";
+        } else {
+            localStorage.removeItem("gemini_api_key");
+            alert("کلید حذف شد. بخش آنلاین تا زمان وارد کردن کلید غیرفعال خواهد بود.");
+        }
+    }
+
     async function askOnlineAI(query) {
+        const apiKey = localStorage.getItem("gemini_api_key");
+        if (!apiKey) {
+            return `⚠️ **کلید هوش مصنوعی (Gemini API Key) تنظیم نشده است!**\n\nبرای استفاده از هوش مصنوعی آنلاین، لطفاً روی دکمه **⚙️ تنظیمات هوش مصنوعی** در بالای کادر چت کلیک کنید و کلید رایگان خود را از Google AI Studio گرفته و اینجا ذخیره کنید تا فعال شود. 🌸`;
+        }
+
         const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
         
-        const url = "https://text.pollinations.ai/v1/chat/completions";
+        // Proxy URL to bypass CORS and geoblocks in Iran
+        const targetUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+        const url = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+
         const data = {
-            messages: [
-                { role: "system", content: systemPrompt },
-                { role: "user", content: query }
-            ],
-            model: "openai",
-            jsonMode: false,
-            private: true,
-            stream: false
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                        { text: systemPrompt + "\n\nUser Question:\n" + query }
+                    ]
+                }
+            ]
         };
 
         try {
@@ -4898,11 +4945,18 @@
                 },
                 body: JSON.stringify(data)
             });
-            if (!response.ok) throw new Error();
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}));
+                if (errData.error && errData.error.message) {
+                    return `❌ **خطا از سمت گوگل:** ${errData.error.message}`;
+                }
+                throw new Error();
+            }
             const json = await response.json();
-            return json.choices[0].message.content;
+            const reply = json.candidates[0].content.parts[0].text;
+            return reply;
         } catch (e) {
-            return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
+            return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً فیلترشکن خود را بررسی کنید یا مطمئن شوید که کلید API وارد شده معتبر است. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
         }
     }
 </script>

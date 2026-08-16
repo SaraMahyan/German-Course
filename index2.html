@@ -911,9 +911,24 @@
             <span style="background: var(--dark-pink); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;">دستیار هوش مصنوعی</span>
         </div>
 
-        <h2 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 15px; font-family: 'Quicksand', 'Vazirmatn'; display: flex; align-items: center; gap: 8px;">
-            🤖✨ دستیار هوشمند آلمانی
+        <h2 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 15px; font-family: 'Quicksand', 'Vazirmatn'; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <span>🤖✨ دستیار هوشمند آلمانی</span>
+            <button onclick="toggleGeminiSettingsMobile()" style="background: none; border: none; font-size: 1.3rem; cursor: pointer; padding: 0 5px;" title="تنظیمات کلید هوش مصنوعی">⚙️</button>
         </h2>
+
+        <!-- API Key Settings Panel -->
+        <div id="gemini-settings-panel-mobile" style="display: none; background: var(--light-lavender); border: 1px solid var(--accent-lavender); border-radius: 12px; padding: 12px; margin-bottom: 15px; font-size: 0.85rem; line-height: 1.5;">
+            <h3 style="font-size: 0.95rem; color: var(--dark-pink); margin-bottom: 8px; font-family: 'Vazirmatn'; margin-top: 0;">🔑 تنظیمات کلید هوش مصنوعی (Gemini)</h3>
+            <p style="color: var(--dark-text); margin-bottom: 8px; font-size: 0.8rem;">
+                برای استفاده از بخش آنلاین، فیلترشکن را روشن کرده، وارد سایت 
+                <a href="https://aistudio.google.com/apikey" target="_blank" style="color: var(--dark-pink); text-decoration: underline; font-weight: bold;">Google AI Studio</a> 
+                شوید، کلید رایگان بسازید و کپی کرده و اینجا ذخیره کنید:
+            </p>
+            <div style="display: flex; gap: 8px;">
+                <input type="password" id="gemini-key-input-mobile" placeholder="AIzaSy..." style="flex: 1; padding: 6px 12px; border-radius: 15px; border: 1px solid var(--accent-lavender); font-family: 'Quicksand', sans-serif; font-size: 0.85rem; outline: none;">
+                <button onclick="saveGeminiKeyMobile()" class="translator-btn" style="padding: 6px 15px; border-radius: 15px; background: var(--dark-pink); border-color: var(--dark-pink); color: white; font-size: 0.8rem; font-weight: bold;">ذخیره 🌸</button>
+            </div>
+        </div>
 
         <!-- Toggler Mode Switcher -->
         <div style="display: flex; background: var(--light-lavender); padding: 5px; border-radius: 25px; border: 1px solid var(--accent-lavender); margin-bottom: 15px;">
@@ -1749,8 +1764,29 @@
             recognition.start();
         }
 
-        // AI Assistant Implementation (Mobile)
-        let currentAiModeMobile = 'offline';
+        // Toggle Gemini Settings Panel (Mobile)
+        function toggleGeminiSettingsMobile() {
+            const panel = document.getElementById("gemini-settings-panel-mobile");
+            const input = document.getElementById("gemini-key-input-mobile");
+            if (panel.style.display === "none") {
+                panel.style.display = "block";
+                input.value = localStorage.getItem("gemini_api_key") || "";
+            } else {
+                panel.style.display = "none";
+            }
+        }
+
+        function saveGeminiKeyMobile() {
+            const key = document.getElementById("gemini-key-input-mobile").value.trim();
+            if (key) {
+                localStorage.setItem("gemini_api_key", key);
+                alert("کلید هوش مصنوعی با موفقیت ذخیره شد! 🌸🔑");
+                document.getElementById("gemini-settings-panel-mobile").style.display = "none";
+            } else {
+                localStorage.removeItem("gemini_api_key");
+                alert("کلید حذف شد. بخش آنلاین تا زمان وارد کردن کلید غیرفعال خواهد بود.");
+            }
+        }
 
         function openAIMobile() {
             document.getElementById("home-view").classList.remove("active");
@@ -1945,18 +1981,26 @@
         }
 
         async function askOnlineAIMobile(query) {
+            const apiKey = localStorage.getItem("gemini_api_key");
+            if (!apiKey) {
+                return `⚠️ **کلید هوش مصنوعی (Gemini API Key) تنظیم نشده است!**\n\nبرای استفاده از هوش مصنوعی آنلاین، لطفاً روی آیکون چرخ‌دنده ⚙️ در بالای چت کلیک کنید و کلید رایگان خود را از Google AI Studio گرفته و اینجا ذخیره کنید تا فعال شود. 🌸`;
+            }
+
             const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
             
-            const url = "https://text.pollinations.ai/v1/chat/completions";
+            // Proxy URL to bypass CORS and geoblocks in Iran
+            const targetUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+
             const data = {
-                messages: [
-                    { role: "system", content: systemPrompt },
-                    { role: "user", content: query }
-                ],
-                model: "openai",
-                jsonMode: false,
-                private: true,
-                stream: false
+                contents: [
+                    {
+                        role: "user",
+                        parts: [
+                            { text: systemPrompt + "\n\nUser Question:\n" + query }
+                        ]
+                    }
+                ]
             };
 
             try {
@@ -1967,11 +2011,18 @@
                     },
                     body: JSON.stringify(data)
                 });
-                if (!response.ok) throw new Error();
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => ({}));
+                    if (errData.error && errData.error.message) {
+                        return `❌ **خطا از سمت گوگل:** ${errData.error.message}`;
+                    }
+                    throw new Error();
+                }
                 const json = await response.json();
-                return json.choices[0].message.content;
+                const reply = json.candidates[0].content.parts[0].text;
+                return reply;
             } catch (e) {
-                return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
+                return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً فیلترشکن خود را بررسی کنید یا مطمئن شوید که کلید API وارد شده معتبر است. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
             }
         }
     </script>
