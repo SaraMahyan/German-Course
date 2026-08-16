@@ -1989,7 +1989,7 @@
             const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
             
             // Direct call to Gemini API (has native CORS support, requires VPN in Iran)
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${apiKey}`;
 
             const data = {
                 contents: [
