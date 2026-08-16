@@ -4878,7 +4878,7 @@
     async function askOnlineAI(query) {
         const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
         
-        const url = "https://text.pollinations.ai";
+        const url = "https://text.pollinations.ai/v1/chat/completions";
         const data = {
             messages: [
                 { role: "system", content: systemPrompt },
@@ -4899,8 +4899,8 @@
                 body: JSON.stringify(data)
             });
             if (!response.ok) throw new Error();
-            const text = await response.text();
-            return text;
+            const json = await response.json();
+            return json.choices[0].message.content;
         } catch (e) {
             return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
         }
