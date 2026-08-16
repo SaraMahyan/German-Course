@@ -4105,6 +4105,16 @@
     // Global Vocab DB for searching across all lessons
     const vocabData = [];
 
+    // Warm up speech synthesis voices list for Chrome & iOS
+    if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+    }
+
     // Initialize Vocab Data from DOM tables for instant search
     document.addEventListener("DOMContentLoaded", () => {
         // Load Dark Theme if saved in LocalStorage
@@ -4324,8 +4334,9 @@
             
             // Remove 🔊/🛑 icon and speaker tags (e.g. "Sarah: ")
             let cleanText = text.replace(/🔊/g, '').replace(/🛑/g, '').trim();
+            // Only split by colon if it's at the beginning of the string (speaker name)
             const colonIdx = cleanText.indexOf(':');
-            if (colonIdx !== -1) {
+            if (colonIdx !== -1 && colonIdx < 15) {
                 cleanText = cleanText.substring(colonIdx + 1).trim();
             }
 
@@ -4354,6 +4365,8 @@
                 utterance.voice = deVoice;
             }
             
+            // Resume in case the synthesis queue is paused/stuck (iOS bugfix)
+            window.speechSynthesis.resume();
             window.speechSynthesis.speak(utterance);
         } else {
             alert("دستگاه شما از تلفظ صوتی آلمانی پشتیبانی نمی‌کند.");
@@ -4363,20 +4376,29 @@
     // Auto-generate speaker icons for German elements
     function initAudioSupport() {
         document.querySelectorAll('.col-german, .phrase-german, .bubble-german, .dialogue-line').forEach(el => {
-            if (!el.querySelector('.audio-icon') && !el.classList.contains('has-audio-setup')) {
+            if (!el.classList.contains('has-audio-setup')) {
                 el.classList.add('has-audio-setup');
                 el.style.cursor = 'pointer';
                 el.title = "کلیک کنید تا تلفظ صوتی آلمانی را بشنوید";
                 
-                const btn = document.createElement('span');
-                btn.className = 'audio-icon';
-                btn.innerText = ' 🔊';
-                btn.style.fontSize = '0.95rem';
-                btn.style.marginLeft = '6px';
-                btn.style.opacity = '0.5';
-                btn.style.transition = 'opacity 0.2s, transform 0.2s';
-                btn.style.display = 'inline-block';
-                el.appendChild(btn);
+                // Add speaker button
+                if (!el.querySelector('.audio-icon')) {
+                    const btn = document.createElement('span');
+                    btn.className = 'audio-icon';
+                    btn.innerText = ' 🔊';
+                    btn.style.fontSize = '0.95rem';
+                    btn.style.marginLeft = '6px';
+                    btn.style.opacity = '0.5';
+                    btn.style.transition = 'opacity 0.2s, transform 0.2s';
+                    btn.style.display = 'inline-block';
+                    el.appendChild(btn);
+                }
+                
+                // Attach direct click event listener (crucial for iOS Safari security guidelines)
+                el.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    speakGerman(el.innerText, el);
+                });
             }
         });
     }
@@ -4422,15 +4444,6 @@
             block.innerHTML = parsedHTML;
         });
     }
-
-    // Global listener for audio clicks
-    document.addEventListener('click', (e) => {
-        const audioContainer = e.target.closest('.has-audio-setup');
-        if (audioContainer) {
-            // We pass the container text and the element itself so we can toggle play/stop
-            speakGerman(audioContainer.innerText, audioContainer);
-        }
-    });
 
     // Translator Tab Switching
     function showTranslator() {
