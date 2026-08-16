@@ -1988,9 +1988,8 @@
 
             const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
             
-            // Proxy URL to bypass CORS and geoblocks in Iran
-            const targetUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-            const url = `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`;
+            // Direct call to Gemini API (has native CORS support, requires VPN in Iran)
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
             const data = {
                 contents: [
@@ -2022,7 +2021,7 @@
                 const reply = json.candidates[0].content.parts[0].text;
                 return reply;
             } catch (e) {
-                return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً فیلترشکن خود را بررسی کنید یا مطمئن شوید که کلید API وارد شده معتبر است. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
+                return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً مطمئن شوید فیلترشکن (VPN) شما روشن است و کلید API وارد شده معتبر است. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
             }
         }
     </script>
