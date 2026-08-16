@@ -1709,7 +1709,7 @@
         function toggleSpeechRecognition(btn, langCode, targetInputId) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
-                alert("مرورگر شما از تایپ صوتی پشتیبانی نمی‌کند. لطفاً از گوگل کروم یا سافاری استفاده کنید.");
+                alert("⚠️ مرورگر یا اپلیکیشن شما از تایپ صوتی پشتیبانی نمی‌کند.\n\nنکته: در گوشی‌های آیفون (iOS)، استفاده از میکروفن درون حالت PWA (برنامه‌هایی که به صفحه اصلی گوشی اضافه می‌شوند) به دلیل قوانین امنیتی اپل مسدود است. لطفاً سایت را مستقیماً در مرورگر Safari یا Google Chrome باز کنید تا کار کند! 🌸");
                 return;
             }
             
@@ -1722,10 +1722,10 @@
             recognition = new SpeechRecognition();
             recognition.lang = langCode;
             recognition.interimResults = true; // Real-time typing!
-            recognition.continuous = true;     // Keep listening
+            recognition.continuous = false;    // Disabled for iOS Safari stability (stops automatically when user stops speaking)
             
             // Highlight button as active
-            btn.innerHTML = '🛑 توقف ضبط...';
+            btn.innerHTML = '🛑 توقف...';
             btn.style.background = '#ff8a80';
             btn.style.color = '#fff';
             btn.style.borderColor = '#ff5252';
@@ -1749,8 +1749,15 @@
             };
             
             recognition.onerror = (event) => {
-                console.error(event.error);
+                console.error("Speech recognition error:", event.error);
                 isRecording = false;
+                
+                if (event.error === 'not-allowed') {
+                    alert("🔒 اجازه دسترسی به میکروفن داده نشده است. لطفاً از تنظیمات مرورگر یا آیفون خود دسترسی به میکروفن را برای این سایت مجاز کنید.");
+                } else if (event.error === 'service-not-allowed') {
+                    alert("Siri و قابلیت تشخیص گفتار دستگاه شما باید فعال باشند تا تایپ صوتی کار کند.");
+                }
+                
                 btn.innerHTML = '⚠️ خطا در ضبط';
                 setTimeout(() => {
                     btn.innerHTML = '🎤 خواندن صوتی';
@@ -1761,7 +1768,12 @@
                 }, 2000);
             };
             
-            recognition.start();
+            try {
+                recognition.start();
+            } catch (e) {
+                console.error(e);
+                isRecording = false;
+            }
         }
 
         // Toggle Gemini Settings Panel (Mobile)
@@ -1911,9 +1923,15 @@
             
             const matchedVocab = [];
             vocabData.forEach(item => {
-                if ((item.de && item.de.toLowerCase().includes(query)) || 
-                    (item.fa && item.fa.toLowerCase().includes(query)) || 
-                    (item.pron && item.pron.toLowerCase().includes(query))) {
+                const german = item.german ? item.german.toLowerCase() : "";
+                const meaning = item.meaning ? item.meaning.toLowerCase() : "";
+                const pronFarsi = item.pronFarsi ? item.pronFarsi.toLowerCase() : "";
+                const pronEng = item.pronEng ? item.pronEng.toLowerCase() : "";
+                
+                if (german.includes(query) || 
+                    meaning.includes(query) || 
+                    pronFarsi.includes(query) || 
+                    pronEng.includes(query)) {
                     matchedVocab.push(item);
                 }
             });
@@ -1940,7 +1958,7 @@
             if (matchedVocab.length > 0) {
                 responseText += `🔑 **واژگان پیدا شده (${matchedVocab.length} مورد):**\n`;
                 matchedVocab.slice(0, 8).forEach(v => {
-                    responseText += `- **${v.de}** [تلفظ: ${v.pron || ''}] ➔ ${v.fa} 🔊\n`;
+                    responseText += `- **${v.german}** [تلفظ: ${v.pronFarsi || ''}] ➔ ${v.meaning} 🔊\n`;
                 });
                 responseText += `\n`;
             }
