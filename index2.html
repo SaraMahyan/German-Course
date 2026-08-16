@@ -1945,13 +1945,31 @@
         }
 
         async function askOnlineAIMobile(query) {
-            const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German. Here is the user question: `;
-            const url = `https://text.pollinations.ai/${encodeURIComponent(systemPrompt + query)}`;
+            const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German.`;
+            
+            const url = "https://text.pollinations.ai";
+            const data = {
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: query }
+                ],
+                model: "openai",
+                jsonMode: false,
+                private: true,
+                stream: false
+            };
+
             try {
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
                 if (!response.ok) throw new Error();
-                const data = await response.text();
-                return data;
+                const text = await response.text();
+                return text;
             } catch (e) {
                 return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
             }
