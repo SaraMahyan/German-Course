@@ -992,8 +992,14 @@
             </li>
             <li class="nav-item" id="nav-translator" style="margin-top: 15px; border-top: 1px dashed var(--accent-lavender); padding-top: 10px;">
                 <button onclick="showTranslator()">
-                    <span class="lesson-num" style="color: var(--dark-pink); font-weight: bold;">🗣️ مترجم همراه</span>
+                    <span class="lesson-num" style="color: var(--dark-pink); font-weight: bold;">💬 مترجم همراه</span>
                     <span style="font-weight: bold;">مترجم صوتی و متنی</span>
+                </button>
+            </li>
+            <li class="nav-item" id="nav-ai-assistant" style="margin-top: 8px;">
+                <button onclick="showAIAssistant()">
+                    <span class="lesson-num" style="color: var(--dark-lavender); font-weight: bold;">🤖✨ دستیار هوشمند</span>
+                    <span style="font-weight: bold;">هوش مصنوعی (آفلاین/آنلاین)</span>
                 </button>
             </li>
         </ul>
@@ -1079,6 +1085,50 @@
                     <!-- Offline Disclaimer -->
                     <div style="font-size: 0.85rem; color: #888; text-align: center; font-family: 'Vazirmatn'; margin-top: 10px; border-top: 1px dashed var(--accent-lavender); padding-top: 10px;">
                         ⚠️ نکته: تایپ صوتی و پخش تلفظ کاملاً **آفلاین** کار می‌کنند، اما برای ترجمه متنی نیاز به **اتصال اینترنت** است. سایر بخش‌های برنامه کماکان ۱۰۰٪ آفلاین هستند.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Assistant Card -->
+        <section class="lesson-card" id="ai-assistant-card" style="display: none;">
+            <div class="lesson-title-text">
+                <h2>🤖✨ دستیار هوشمند هوش مصنوعی (آفلاین و آنلاین)</h2>
+                <p>از دستیار آفلاین بپرسید تا درس‌ها را جستجو کند، یا آنلاین شوید و با هوش مصنوعی گپ بزنید! 🇩🇪🌸</p>
+            </div>
+            
+            <div class="section-box" style="margin-top: 20px;">
+                <div class="translator-container" style="display: flex; flex-direction: column; gap: 20px; padding: 10px;">
+                    
+                    <!-- Toggler Mode Switcher -->
+                    <div style="display: flex; background: var(--light-lavender); padding: 5px; border-radius: 25px; border: 1px solid var(--accent-lavender);">
+                        <button id="ai-mode-offline-desktop" onclick="setAIModeDesktop('offline')" style="flex: 1; border: none; padding: 10px; border-radius: 20px; font-family: 'Vazirmatn'; font-size: 0.95rem; font-weight: bold; cursor: pointer; transition: all 0.2s; background: var(--dark-pink); color: white;">🤖 آفلاین (جستجوی دوره)</button>
+                        <button id="ai-mode-online-desktop" onclick="setAIModeDesktop('online')" style="flex: 1; border: none; padding: 10px; border-radius: 20px; font-family: 'Vazirmatn'; font-size: 0.95rem; font-weight: bold; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--dark-text);">🌐 آنلاین (ChatGPT)</button>
+                    </div>
+
+                    <!-- Chat Window -->
+                    <div id="ai-chat-window-desktop" style="height: 350px; overflow-y: auto; border: 1px solid var(--accent-lavender); border-radius: 12px; padding: 15px; background: var(--light-bg); display: flex; flex-direction: column; gap: 15px; scroll-behavior: smooth;">
+                        <!-- Welcome Message -->
+                        <div class="chat-bubble ai-msg" style="align-self: flex-start; background: var(--light-lavender); color: var(--dark-text); padding: 12px 16px; border-radius: 15px 15px 15px 0px; max-width: 75%; font-size: 1rem; font-family: 'Vazirmatn'; line-height: 1.6; direction: rtl; text-align: right;">
+                            سلام! من دستیار هوشمند یادگیری آلمانی شما هستم. 🌸<br>
+                            در <strong>حالت آفلاین</strong>، می‌توانم کلمات، مکالمات و نکات گرامری کل ۹ درس را جستجو کنم.<br>
+                            در <strong>حالت آنلاین</strong>، می‌توانید هر سوالی درباره زبان آلمانی یا زندگی در آلمان دارید بپرسید!
+                        </div>
+                    </div>
+
+                    <!-- Suggestion Chips -->
+                    <div style="display: flex; gap: 10px; overflow-x: auto; padding: 5px 0;">
+                        <span onclick="sendAISuggestionDesktop('زمان گذشته Perfekt را توضیح بده')" class="translator-btn" style="font-size: 0.85rem; padding: 6px 12px; cursor: pointer;">⏱️ گذشته Perfekt</span>
+                        <span onclick="sendAISuggestionDesktop('جملات کاربردی برای خرید بلیت')" class="translator-btn" style="font-size: 0.85rem; padding: 6px 12px; cursor: pointer;">🎫 خرید بلیت</span>
+                        <span onclick="sendAISuggestionDesktop('چگونه به آلمانی احوالپرسی کنم؟')" class="translator-btn" style="font-size: 0.85rem; padding: 6px 12px; cursor: pointer;">🌸 احوالپرسی</span>
+                        <span onclick="sendAISuggestionDesktop('معنی واژه Flughafen چیست')" class="translator-btn" style="font-size: 0.85rem; padding: 6px 12px; cursor: pointer;">✈️ فرودگاه</span>
+                    </div>
+
+                    <!-- Input Box -->
+                    <div style="display: flex; gap: 10px; align-items: center; border-top: 1px dashed var(--accent-lavender); padding-top: 15px;">
+                        <button onclick="startAISpeechDesktop(this)" class="translator-btn" style="padding: 12px; border-radius: 50%; width: 46px; height: 46px; min-width: 46px; display: flex; align-items: center; justify-content: center; background: var(--pastel-pink); border-color: var(--primary-pink); font-size: 1.2rem;" title="تایپ صوتی">🎤</button>
+                        <input type="text" id="ai-user-input-desktop" onkeydown="if(event.key==='Enter') sendUserAIMessageDesktop()" placeholder="سوال خود را بپرسید..." style="flex: 1; padding: 12px 20px; border-radius: 25px; border: 1px solid var(--accent-lavender); font-family: 'Vazirmatn'; font-size: 1.05rem; background: var(--light-bg); color: var(--dark-text); outline: none;">
+                        <button onclick="sendUserAIMessageDesktop()" class="translator-btn" style="padding: 12px 20px; border-radius: 25px; background: var(--dark-pink); border-color: var(--dark-pink); color: white; font-size: 1.05rem; font-weight: bold;" title="ارسال">ارسال ⚡</button>
                     </div>
                 </div>
             </div>
@@ -4467,6 +4517,27 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function showAIAssistant() {
+        const navItems = document.querySelectorAll(".lesson-nav .nav-item");
+        navItems.forEach(item => item.classList.remove("active"));
+
+        document.getElementById("nav-ai-assistant").classList.add("active");
+
+        const lessonCards = document.querySelectorAll(".lesson-card");
+        lessonCards.forEach(card => {
+            card.classList.remove("active");
+            card.style.display = "none";
+        });
+
+        const aiCard = document.getElementById("ai-assistant-card");
+        if (aiCard) {
+            aiCard.classList.add("active");
+            aiCard.style.display = "block";
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     // Two-way translator implementation
     let translatorDirection = 'de-fa'; // 'de-fa' (German to Persian) or 'fa-de' (Persian to German)
 
@@ -4619,6 +4690,202 @@
         };
         
         recognition.start();
+    }
+
+    // AI Assistant Implementation (Desktop)
+    let currentAiModeDesktop = 'offline';
+
+    function setAIModeDesktop(mode) {
+        currentAiModeDesktop = mode;
+        const btnOffline = document.getElementById("ai-mode-offline-desktop");
+        const btnOnline = document.getElementById("ai-mode-online-desktop");
+        const input = document.getElementById("ai-user-input-desktop");
+        
+        if (mode === 'offline') {
+            btnOffline.style.background = "var(--dark-pink)";
+            btnOffline.style.color = "white";
+            btnOnline.style.background = "transparent";
+            btnOnline.style.color = "var(--dark-text)";
+            input.placeholder = "واژه یا موضوع آفلاین را جستجو کنید...";
+        } else {
+            btnOnline.style.background = "var(--dark-pink)";
+            btnOnline.style.color = "white";
+            btnOffline.style.background = "transparent";
+            btnOffline.style.color = "var(--dark-text)";
+            input.placeholder = "هر سوالی دارید به صورت آنلاین بپرسید...";
+        }
+    }
+
+    function startAISpeechDesktop(btn) {
+        const lang = currentAiModeDesktop === 'offline' ? 'de-DE' : 'fa-IR';
+        toggleSpeechRecognition(btn, lang, 'ai-user-input-desktop');
+    }
+
+    function sendAISuggestionDesktop(query) {
+        document.getElementById("ai-user-input-desktop").value = query;
+        sendUserAIMessageDesktop();
+    }
+
+    async function sendUserAIMessageDesktop() {
+        const input = document.getElementById("ai-user-input-desktop");
+        const query = input.value.trim();
+        if (!query) return;
+
+        input.value = "";
+        appendAIMessage(query, 'user-msg', 'ai-chat-window-desktop');
+
+        // Loading message
+        const loadingId = 'ai-loading-' + Date.now();
+        appendAIMessage('⏳ در حال پاسخ‌گویی...', 'ai-msg', 'ai-chat-window-desktop', loadingId);
+
+        let reply = "";
+        if (currentAiModeDesktop === 'offline') {
+            reply = searchOfflineCourse(query);
+        } else {
+            reply = await askOnlineAI(query);
+        }
+
+        // Remove loading and append real reply
+        const loadingEl = document.getElementById(loadingId);
+        if (loadingEl) loadingEl.remove();
+
+        appendAIMessage(reply, 'ai-msg', 'ai-chat-window-desktop');
+        
+        // Re-initialize audio support to bind click listeners to new German words in response
+        initAudioSupport();
+    }
+
+    function appendAIMessage(text, className, windowId, id = null) {
+        const windowEl = document.getElementById(windowId);
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble ' + className;
+        if (id) bubble.id = id;
+
+        // Styling bubble dynamically
+        bubble.style.padding = "12px 16px";
+        bubble.style.borderRadius = className === 'user-msg' ? "15px 15px 0px 15px" : "15px 15px 15px 0px";
+        bubble.style.maxWidth = "75%";
+        bubble.style.fontSize = "1rem";
+        bubble.style.fontFamily = "'Vazirmatn'";
+        bubble.style.lineHeight = "1.6";
+        bubble.style.direction = "rtl";
+        bubble.style.textAlign = "right";
+        bubble.style.marginTop = "10px";
+
+        if (className === 'user-msg') {
+            bubble.style.alignSelf = "flex-end";
+            bubble.style.background = "var(--pastel-pink)";
+            bubble.style.color = "var(--dark-pink)";
+        } else {
+            bubble.style.alignSelf = "flex-start";
+            bubble.style.background = "var(--light-lavender)";
+            bubble.style.color = "var(--dark-text)";
+        }
+
+        // Format and render markdown/HTML
+        bubble.innerHTML = formatChatResponse(text);
+        windowEl.appendChild(bubble);
+        windowEl.scrollTop = windowEl.scrollHeight;
+    }
+
+    function formatChatResponse(text) {
+        let formatted = text
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+        
+        // Wrap any Bold words that contain Latin characters inside <strong> with audio helper class
+        formatted = formatted.replace(/<strong>([A-Za-zÄäÖöÜüß\s\-\,\.\?\!\'\’]+)<\/strong>/g, '<strong class="col-german has-audio-setup" style="color: var(--dark-pink); cursor: pointer;" title="پخش تلفظ آلمانی">$1</strong>');
+        return formatted;
+    }
+
+    function searchOfflineCourse(query) {
+        query = query.toLowerCase().trim();
+        
+        const matchedVocab = [];
+        vocabData.forEach(item => {
+            if ((item.de && item.de.toLowerCase().includes(query)) || 
+                (item.fa && item.fa.toLowerCase().includes(query)) || 
+                (item.pron && item.pron.toLowerCase().includes(query))) {
+                matchedVocab.push(item);
+            }
+        });
+
+        // Scan all document phrases
+        const phrases = [];
+        document.querySelectorAll('.phrase-card, tr').forEach(el => {
+            const text = el.innerText;
+            if (text.toLowerCase().includes(query)) {
+                // Try finding German text container
+                const deEl = el.querySelector('.col-german, strong, p');
+                const faEl = el.querySelector('.col-farsi, .phrase-translation, td:nth-child(3)');
+                if (deEl && faEl) {
+                    const de = deEl.innerText.replace(/🔊/g, '').replace(/🛑/g, '').trim();
+                    const fa = faEl.innerText.trim();
+                    if (de && fa && !phrases.some(p => p.de === de)) {
+                        phrases.push({ de, fa });
+                    }
+                }
+            }
+        });
+
+        let responseText = `🌸 **نتایج جستجوی آفلاین دوره آلمانی:**\n\n`;
+        
+        if (matchedVocab.length > 0) {
+            responseText += `🔑 **واژگان پیدا شده (${matchedVocab.length} مورد):**\n`;
+            matchedVocab.slice(0, 8).forEach(v => {
+                responseText += `- **${v.de}** [تلفظ: ${v.pron || ''}] ➔ ${v.fa} 🔊\n`;
+            });
+            responseText += `\n`;
+        }
+
+        if (phrases.length > 0) {
+            responseText += `💬 **جملات و اصطلاحات پیدا شده (${phrases.length} مورد):**\n`;
+            phrases.slice(0, 6).forEach(p => {
+                responseText += `- **${p.de}** ➔ ${p.fa} 🔊\n`;
+            });
+            responseText += `\n`;
+        }
+
+        // Scan grammar boxes
+        let grammarMatches = 0;
+        let grammarText = "";
+        document.querySelectorAll('.grammar-box, .section-box').forEach(box => {
+            const text = box.innerText;
+            if (text.toLowerCase().includes(query) && box.querySelector('h3, h4')) {
+                const title = box.querySelector('h3, h4')?.innerText || 'نکته گرامری';
+                if (grammarMatches < 2) {
+                    // Extract clean short text
+                    let cleanExcerpt = box.innerText.replace(/🔊/g, '').replace(/🛑/g, '').trim().substring(0, 250);
+                    grammarText += `⚙️ **توضیح گرامری در بخش [${title}]:**\n${cleanExcerpt}...\n\n`;
+                    grammarMatches++;
+                }
+            }
+        });
+        
+        if (grammarText) {
+            responseText += grammarText;
+        }
+
+        if (matchedVocab.length === 0 && phrases.length === 0 && !grammarText) {
+            responseText = `⚠️ **دستیار آفلاین:** متاسفانه در کلمات و مطالب درس‌های آفلاین موضوعی مرتبط با "${query}" پیدا نکردم.\n\n💡 پیشنهاد می‌کنم وضعیت اینترنت خود را متصل کنید و با سوئیچ به **حالت آنلاین**، سوال خود را از هوش مصنوعی بپرسید تا پاسخ کامل و بدون محدودیتی دریافت کنید! 🌸`;
+        } else {
+            responseText += `💡 *نکته: بر روی هرکدام از عبارات آلمانی دارای علامت بلندگو کلیک کنید تا تلفظ صوتی آفلاین آن را بشنوید.*`;
+        }
+
+        return responseText;
+    }
+
+    async function askOnlineAI(query) {
+        const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German. Here is the user question: `;
+        const url = `https://text.pollinations.ai/${encodeURIComponent(systemPrompt + query)}`;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error();
+            const data = await response.text();
+            return data;
+        } catch (e) {
+            return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
+        }
     }
 </script>
 

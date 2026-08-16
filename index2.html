@@ -904,6 +904,53 @@
         </div>
     </section>
 
+    <!-- ==================== AI COMPANION VIEW ==================== -->
+    <section class="view" id="ai-view" style="padding: 15px; display: none;">
+        <div class="lesson-view-header">
+            <button class="back-btn" onclick="backToHome()">← بازگشت به خانه</button>
+            <span style="background: var(--dark-pink); color: white; padding: 4px 10px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;">دستیار هوش مصنوعی</span>
+        </div>
+
+        <h2 style="font-size: 1.35rem; color: var(--dark-text); margin-bottom: 15px; font-family: 'Quicksand', 'Vazirmatn'; display: flex; align-items: center; gap: 8px;">
+            🤖✨ دستیار هوشمند آلمانی
+        </h2>
+
+        <!-- Toggler Mode Switcher -->
+        <div style="display: flex; background: var(--light-lavender); padding: 5px; border-radius: 25px; border: 1px solid var(--accent-lavender); margin-bottom: 15px;">
+            <button id="ai-mode-offline-mobile" onclick="setAIModeMobile('offline')" style="flex: 1; border: none; padding: 8px 12px; border-radius: 20px; font-family: 'Vazirmatn'; font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: all 0.2s; background: var(--dark-pink); color: white;">🤖 آفلاین (جستجوی دوره)</button>
+            <button id="ai-mode-online-mobile" onclick="setAIModeMobile('online')" style="flex: 1; border: none; padding: 8px 12px; border-radius: 20px; font-family: 'Vazirmatn'; font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--dark-text);">🌐 آنلاین (ChatGPT)</button>
+        </div>
+
+        <!-- Chat Container -->
+        <div style="display: flex; flex-direction: column; gap: 15px; background: var(--white); padding: 15px; border-radius: var(--border-radius-md); border: 1px solid var(--primary-pink); box-shadow: var(--shadow-sm); margin-bottom: 85px;">
+            
+            <!-- Chat Window Messages -->
+            <div id="ai-chat-window-mobile" style="height: 320px; overflow-y: auto; border: 1px solid var(--accent-lavender); border-radius: 12px; padding: 10px; background: var(--light-bg); display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;">
+                <!-- Welcome Message -->
+                <div class="chat-bubble ai-msg" style="align-self: flex-start; background: var(--light-lavender); color: var(--dark-text); padding: 10px 14px; border-radius: 15px 15px 15px 0px; max-width: 85%; font-size: 0.95rem; font-family: 'Vazirmatn'; line-height: 1.5; direction: rtl; text-align: right;">
+                    سلام! من دستیار هوشمند یادگیری آلمانی تو هستم. 🌸<br>
+                    در <strong>حالت آفلاین</strong>، می‌توانم درس‌ها، کلمات و گرامرها را جستجو کنم.<br>
+                    در <strong>حالت آنلاین</strong>، هر سوالی بپرسی با هوش مصنوعی پاسخ می‌دهم!
+                </div>
+            </div>
+
+            <!-- Suggestion Chips -->
+            <div id="ai-suggestion-chips-mobile" style="display: flex; gap: 8px; overflow-x: auto; padding: 4px 0; white-space: nowrap; -webkit-overflow-scrolling: touch;">
+                <span onclick="sendAISuggestionMobile('زمان گذشته Perfekt را توضیح بده')" style="background: var(--light-bg); border: 1px solid var(--accent-lavender); color: var(--dark-lavender); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; cursor: pointer; font-family: 'Vazirmatn';">⏱️ گذشته Perfekt</span>
+                <span onclick="sendAISuggestionMobile('جملات کاربردی برای خرید بلیت')" style="background: var(--light-bg); border: 1px solid var(--accent-lavender); color: var(--dark-lavender); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; cursor: pointer; font-family: 'Vazirmatn';">🎫 خرید بلیت</span>
+                <span onclick="sendAISuggestionMobile('چگونه به آلمانی احوالپرسی کنم؟')" style="background: var(--light-bg); border: 1px solid var(--accent-lavender); color: var(--dark-lavender); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; cursor: pointer; font-family: 'Vazirmatn';">🌸 احوالپرسی</span>
+                <span onclick="sendAISuggestionMobile('معنی واژه Flughafen چیست')" style="background: var(--light-bg); border: 1px solid var(--accent-lavender); color: var(--dark-lavender); padding: 6px 12px; border-radius: 15px; font-size: 0.8rem; cursor: pointer; font-family: 'Vazirmatn';">✈️ فرودگاه</span>
+            </div>
+
+            <!-- Input Box -->
+            <div style="display: flex; gap: 8px; align-items: center; border-top: 1px dashed var(--accent-lavender); padding-top: 10px;">
+                <button onclick="startAISpeechMobile(this)" class="translator-btn" style="padding: 10px; border-radius: 50%; width: 42px; height: 42px; min-width: 42px; display: flex; align-items: center; justify-content: center; background: var(--pastel-pink); border-color: var(--primary-pink); font-size: 1.1rem;" title="تایپ صوتی">🎤</button>
+                <input type="text" id="ai-user-input-mobile" onkeydown="if(event.key==='Enter') sendUserAIMessageMobile()" placeholder="سوال خود را بپرسید..." style="flex: 1; padding: 10px 15px; border-radius: 20px; border: 1px solid var(--accent-lavender); font-family: 'Vazirmatn'; font-size: 0.95rem; background: var(--light-bg); color: var(--dark-text); outline: none;">
+                <button onclick="sendUserAIMessageMobile()" class="translator-btn" style="padding: 10px; border-radius: 50%; width: 42px; height: 42px; min-width: 42px; display: flex; align-items: center; justify-content: center; background: var(--dark-pink); border-color: var(--dark-pink); color: white; font-size: 1rem;" title="ارسال">⚡</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Sticky Mobile Tab Navigation Bar -->
     <nav class="bottom-action-bar">
         <button class="tab-btn active" id="tab-home" onclick="backToHome()">
@@ -914,9 +961,9 @@
             <span>💬</span>
             مترجم همراه
         </button>
-        <button class="tab-btn" id="tab-print" onclick="window.location.href='index.html?mode=print'">
-            <span>📄</span>
-            نسخه دسکتاپ/چاپ
+        <button class="tab-btn" id="tab-ai" onclick="openAIMobile()">
+            <span>🤖</span>
+            دستیار هوشمند
         </button>
     </nav>
 
@@ -1120,15 +1167,19 @@
 
         // Initialize Home Page view logic
         function openLesson(lessonNum) {
-            // Hide Home View & Translator View
+            // Hide Home View, Translator View & AI View
             document.getElementById("home-view").classList.remove("active");
             const transView = document.getElementById("translator-view");
             if (transView) transView.classList.remove("active");
+            const aiView = document.getElementById("ai-view");
+            if (aiView) aiView.classList.remove("active");
             
             // Set active class on bottom tabs
             document.getElementById("tab-home").classList.add("active");
             const tabTrans = document.getElementById("tab-translator");
             if (tabTrans) tabTrans.classList.remove("active");
+            const tabAi = document.getElementById("tab-ai");
+            if (tabAi) tabAi.classList.remove("active");
             
             // Show Lesson View
             const lessonView = document.getElementById("lesson-view");
@@ -1300,6 +1351,8 @@
             document.getElementById("lesson-view").classList.remove("active");
             const transView = document.getElementById("translator-view");
             if (transView) transView.classList.remove("active");
+            const aiView = document.getElementById("ai-view");
+            if (aiView) aiView.classList.remove("active");
             
             // Show Home View
             document.getElementById("home-view").classList.add("active");
@@ -1308,6 +1361,8 @@
             document.getElementById("tab-home").classList.add("active");
             const tabTrans = document.getElementById("tab-translator");
             if (tabTrans) tabTrans.classList.remove("active");
+            const tabAi = document.getElementById("tab-ai");
+            if (tabAi) tabAi.classList.remove("active");
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1531,10 +1586,14 @@
         function openTranslatorMobile() {
             document.getElementById("home-view").classList.remove("active");
             document.getElementById("lesson-view").classList.remove("active");
+            const aiView = document.getElementById("ai-view");
+            if (aiView) aiView.classList.remove("active");
             document.getElementById("translator-view").classList.add("active");
             
             document.getElementById("tab-home").classList.remove("active");
             document.getElementById("tab-translator").classList.add("active");
+            const tabAi = document.getElementById("tab-ai");
+            if (tabAi) tabAi.classList.remove("active");
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1688,6 +1747,214 @@
             };
             
             recognition.start();
+        }
+
+        // AI Assistant Implementation (Mobile)
+        let currentAiModeMobile = 'offline';
+
+        function openAIMobile() {
+            document.getElementById("home-view").classList.remove("active");
+            document.getElementById("lesson-view").classList.remove("active");
+            const transView = document.getElementById("translator-view");
+            if (transView) transView.classList.remove("active");
+            document.getElementById("ai-view").classList.add("active");
+            
+            document.getElementById("tab-home").classList.remove("active");
+            const tabTrans = document.getElementById("tab-translator");
+            if (tabTrans) tabTrans.classList.remove("active");
+            document.getElementById("tab-ai").classList.add("active");
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setAIModeMobile(mode) {
+            currentAiModeMobile = mode;
+            const btnOffline = document.getElementById("ai-mode-offline-mobile");
+            const btnOnline = document.getElementById("ai-mode-online-mobile");
+            const input = document.getElementById("ai-user-input-mobile");
+            
+            if (mode === 'offline') {
+                btnOffline.style.background = "var(--dark-pink)";
+                btnOffline.style.color = "white";
+                btnOnline.style.background = "transparent";
+                btnOnline.style.color = "var(--dark-text)";
+                input.placeholder = "واژه یا موضوع آفلاین را جستجو کنید...";
+            } else {
+                btnOnline.style.background = "var(--dark-pink)";
+                btnOnline.style.color = "white";
+                btnOffline.style.background = "transparent";
+                btnOffline.style.color = "var(--dark-text)";
+                input.placeholder = "هر سوالی دارید به صورت آنلاین بپرسید...";
+            }
+        }
+
+        function startAISpeechMobile(btn) {
+            const lang = currentAiModeMobile === 'offline' ? 'de-DE' : 'fa-IR';
+            toggleSpeechRecognition(btn, lang, 'ai-user-input-mobile');
+        }
+
+        function sendAISuggestionMobile(query) {
+            document.getElementById("ai-user-input-mobile").value = query;
+            sendUserAIMessageMobile();
+        }
+
+        async function sendUserAIMessageMobile() {
+            const input = document.getElementById("ai-user-input-mobile");
+            const query = input.value.trim();
+            if (!query) return;
+
+            input.value = "";
+            appendAIMessageMobile(query, 'user-msg', 'ai-chat-window-mobile');
+
+            // Loading message
+            const loadingId = 'ai-loading-mob-' + Date.now();
+            appendAIMessageMobile('⏳ در حال پاسخ‌گویی...', 'ai-msg', 'ai-chat-window-mobile', loadingId);
+
+            let reply = "";
+            if (currentAiModeMobile === 'offline') {
+                reply = searchOfflineCourseMobile(query);
+            } else {
+                reply = await askOnlineAIMobile(query);
+            }
+
+            // Remove loading and append reply
+            const loadingEl = document.getElementById(loadingId);
+            if (loadingEl) loadingEl.remove();
+
+            appendAIMessageMobile(reply, 'ai-msg', 'ai-chat-window-mobile');
+            
+            // Re-initialize audio support to bind click listeners to new German words
+            initAudioSupport();
+        }
+
+        function appendAIMessageMobile(text, className, windowId, id = null) {
+            const windowEl = document.getElementById(windowId);
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble ' + className;
+            if (id) bubble.id = id;
+
+            // Styling bubble dynamically
+            bubble.style.padding = "10px 14px";
+            bubble.style.borderRadius = className === 'user-msg' ? "15px 15px 0px 15px" : "15px 15px 15px 0px";
+            bubble.style.maxWidth = "85%";
+            bubble.style.fontSize = "0.95rem";
+            bubble.style.fontFamily = "'Vazirmatn'";
+            bubble.style.lineHeight = "1.5";
+            bubble.style.direction = "rtl";
+            bubble.style.textAlign = "right";
+            bubble.style.marginTop = "8px";
+
+            if (className === 'user-msg') {
+                bubble.style.alignSelf = "flex-end";
+                bubble.style.background = "var(--pastel-pink)";
+                bubble.style.color = "var(--dark-pink)";
+            } else {
+                bubble.style.alignSelf = "flex-start";
+                bubble.style.background = "var(--light-lavender)";
+                bubble.style.color = "var(--dark-text)";
+            }
+
+            // Format and render HTML
+            bubble.innerHTML = formatChatResponseMobile(text);
+            windowEl.appendChild(bubble);
+            windowEl.scrollTop = windowEl.scrollHeight;
+        }
+
+        function formatChatResponseMobile(text) {
+            let formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            
+            // Wrap any Bold words containing Latin characters in audio trigger tags
+            formatted = formatted.replace(/<strong>([A-Za-zÄäÖöÜüß\s\-\,\.\?\!\'\’]+)<\/strong>/g, '<strong class="col-german has-audio-setup" style="color: var(--dark-pink); cursor: pointer;" title="پخش تلفظ آلمانی">$1</strong>');
+            return formatted;
+        }
+
+        function searchOfflineCourseMobile(query) {
+            query = query.toLowerCase().trim();
+            
+            const matchedVocab = [];
+            vocabData.forEach(item => {
+                if ((item.de && item.de.toLowerCase().includes(query)) || 
+                    (item.fa && item.fa.toLowerCase().includes(query)) || 
+                    (item.pron && item.pron.toLowerCase().includes(query))) {
+                    matchedVocab.push(item);
+                }
+            });
+
+            // Scan all document phrases
+            const phrases = [];
+            document.querySelectorAll('.phrase-card, tr, .dialogue-line').forEach(el => {
+                const text = el.innerText;
+                if (text.toLowerCase().includes(query)) {
+                    const deEl = el.querySelector('.col-german, strong, p');
+                    const faEl = el.querySelector('.col-farsi, .phrase-translation, td:nth-child(3)');
+                    if (deEl && faEl) {
+                        const de = deEl.innerText.replace(/🔊/g, '').replace(/🛑/g, '').trim();
+                        const fa = faEl.innerText.trim();
+                        if (de && fa && !phrases.some(p => p.de === de)) {
+                            phrases.push({ de, fa });
+                        }
+                    }
+                }
+            });
+
+            let responseText = `🌸 **نتایج جستجوی آفلاین دوره آلمانی:**\n\n`;
+            
+            if (matchedVocab.length > 0) {
+                responseText += `🔑 **واژگان پیدا شده (${matchedVocab.length} مورد):**\n`;
+                matchedVocab.slice(0, 8).forEach(v => {
+                    responseText += `- **${v.de}** [تلفظ: ${v.pron || ''}] ➔ ${v.fa} 🔊\n`;
+                });
+                responseText += `\n`;
+            }
+
+            if (phrases.length > 0) {
+                responseText += `💬 **جملات و اصطلاحات پیدا شده (${phrases.length} مورد):**\n`;
+                phrases.slice(0, 6).forEach(p => {
+                    responseText += `- **${p.de}** ➔ ${p.fa} 🔊\n`;
+                });
+                responseText += `\n`;
+            }
+
+            // Scan grammar boxes
+            let grammarMatches = 0;
+            let grammarText = "";
+            document.querySelectorAll('.grammar-box, .section-box, .grammar-highlight').forEach(box => {
+                const text = box.innerText;
+                if (text.toLowerCase().includes(query)) {
+                    if (grammarMatches < 2) {
+                        let cleanExcerpt = box.innerText.replace(/🔊/g, '').replace(/🛑/g, '').trim().substring(0, 200);
+                        grammarText += `⚙️ **توضیح گرامری پیدا شده:**\n${cleanExcerpt}...\n\n`;
+                        grammarMatches++;
+                    }
+                }
+            });
+            
+            if (grammarText) {
+                responseText += grammarText;
+            }
+
+            if (matchedVocab.length === 0 && phrases.length === 0 && !grammarText) {
+                responseText = `⚠️ **دستیار آفلاین:** متاسفانه در درس‌های آفلاین موضوعی مرتبط با "${query}" پیدا نکردم.\n\n💡 پیشنهاد می‌کنم با سوئیچ به **حالت آنلاین**، سوال خود را بپرسید! 🌸`;
+            } else {
+                responseText += `💡 *نکته: روی واژگان آلمانی ضربه بزنید تا تلفظ صوتی آفلاین را بشنوید.*`;
+            }
+
+            return responseText;
+        }
+
+        async function askOnlineAIMobile(query) {
+            const systemPrompt = `You are a helpful, cute German language learning assistant named 'دستیار هوشمند آلمانی 🌸'. You must reply in Persian (فارسی). Explain German words, translation, grammar or survival phrases clearly. Always add the pronunciation and english spelling when useful. If there are German words in your response, put them in bold like **GermanWord** and add a speaker emoji 🔊 next to them so the user knows they are German. Here is the user question: `;
+            const url = `https://text.pollinations.ai/${encodeURIComponent(systemPrompt + query)}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error();
+                const data = await response.text();
+                return data;
+            } catch (e) {
+                return `❌ **خطا در اتصال به هوش مصنوعی آنلاین:** لطفاً اتصال اینترنت خود را بررسی کنید. در صورتی که آفلاین هستید، می‌توانید از **حالت آفلاین** دستیار برای جستجو در درس‌ها استفاده کنید! 🌸`;
+            }
         }
     </script>
 </body>
